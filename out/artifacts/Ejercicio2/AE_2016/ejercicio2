@@ -1,0 +1,8 @@
+#!/bin/bash
+
+matrix=$1
+seasons=$2
+basedir="$(pwd)"
+echo $matrix $seasons $basedir
+
+java -jar $basedir/Ejercicio2.jar $matrix $seasons

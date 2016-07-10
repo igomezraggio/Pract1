@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2016-04-26T21:10:04</date>
+  <millis>1461715804355</millis>
+  <sequence>0</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>THREADS: 2</message>
+</record>
+<record>
+  <date>2016-04-26T21:10:04</date>
+  <millis>1461715804383</millis>
+  <sequence>1</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
+  <method>start</method>
+  <thread>1</thread>
+  <message>Cores: 2</message>
+</record>
+<record>
+  <date>2016-04-26T21:10:04</date>
+  <millis>1461715804861</millis>
+  <sequence>2</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>uy.fing.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Total execution time: 474ms</message>
+</record>
+<record>
+  <date>2016-04-26T21:10:04</date>
+  <millis>1461715804865</millis>
+  <sequence>3</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>uy.fing.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Objective values written to file FUN</message>
+</record>
+<record>
+  <date>2016-04-26T21:10:04</date>
+  <millis>1461715804870</millis>
+  <sequence>4</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>uy.fing.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Variable values written to file VAR</message>
+</record>

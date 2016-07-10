@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="Ejercicio2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Ejercicio2</output-path>
+    <root id="root">
+      <element id="archive" name="Ejercicio2.jar">
+        <element id="module-output" name="Pract1" />
+      </element>
+      <element id="library" level="project" name="org.uma.jmetal:jmetal-algorithm:5.0" />
+      <element id="library" level="project" name="org.uma.jmetal:jmetal-exec:5.0" />
+    </root>
+  </artifact>
+</component>

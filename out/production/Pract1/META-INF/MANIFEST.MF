@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Class-Path: jmetal-algorithm-5.0.jar jmetal-core-5.0.jar maven-reporti
+ ng-api-3.0.jar doxia-sink-api-1.0.jar commons-lang3-3.3.2.jar commons
+ -math3-3.3.jar hamcrest-all-1.3.jar jmetal-problem-5.0.jar jmetal-exe
+ c-5.0.jar jmetal-core-5.0.jar maven-reporting-api-3.0.jar doxia-sink-
+ api-1.0.jar commons-lang3-3.3.2.jar commons-math3-3.3.jar hamcrest-al
+ l-1.3.jar jmetal-algorithm-5.0.jar jmetal-problem-5.0.jar
+Main-Class: uy.fing.Main
+
