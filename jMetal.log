@@ -2,31 +2,53 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2016-07-09T21:08:44</date>
-  <millis>1468109324297</millis>
+  <date>2016-07-18T19:10:03</date>
+  <millis>1468879803479</millis>
   <sequence>0</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>THREADS: 6</message>
+</record>
+<record>
+  <date>2016-07-18T19:10:03</date>
+  <millis>1468879803500</millis>
+  <sequence>1</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
+  <method>start</method>
+  <thread>1</thread>
+  <message>Cores: 6</message>
+</record>
+<record>
+  <date>2016-07-18T20:08:37</date>
+  <millis>1468883317706</millis>
+  <sequence>2</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>uy.fing.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Total execution time: 488ms</message>
+  <message>Total execution time: 3514200ms</message>
 </record>
 <record>
-  <date>2016-07-09T21:08:44</date>
-  <millis>1468109324329</millis>
-  <sequence>1</sequence>
+  <date>2016-07-18T20:08:37</date>
+  <millis>1468883317718</millis>
+  <sequence>3</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1468109323782</message>
+  <message>Random seed: 1468879803466</message>
 </record>
 <record>
-  <date>2016-07-09T21:08:44</date>
-  <millis>1468109324329</millis>
-  <sequence>2</sequence>
+  <date>2016-07-18T20:08:37</date>
+  <millis>1468883317719</millis>
+  <sequence>4</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
@@ -35,9 +57,9 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2016-07-09T21:08:44</date>
-  <millis>1468109324330</millis>
-  <sequence>3</sequence>
+  <date>2016-07-18T20:08:37</date>
+  <millis>1468883317719</millis>
+  <sequence>5</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>

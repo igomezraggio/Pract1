@@ -25,11 +25,15 @@ import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator;
 import org.uma.jmetal.util.fileoutput.SolutionSetOutput;
+import weka.classifiers.Evaluation;
+import weka.classifiers.meta.FilteredClassifier;
+import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomTree;
+import weka.core.Debug;
+import weka.core.Instances;
+import weka.filters.unsupervised.attribute.Remove;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.List;
 import java.util.logging.Handler;
 
@@ -43,38 +47,59 @@ public class Main {
 
     public static void main(String[] args){
 
-        AttributesProblem problem = new AttributesProblem();
-        Algorithm<List<IntegerSolution>> algorithm;
-        CrossoverOperator<IntegerSolution> crossover;
-        MutationOperator<IntegerSolution> mutation;
-        SelectionOperator<List<IntegerSolution>, IntegerSolution> selection;
+        Integer attributeCount = Integer.valueOf(args[0]);
+        try{
 
-        double crossoverProbability = 0.7 ;
-        double crossoverDistributionIndex = 20.0 ;
-        crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
+            BufferedReader reader = new BufferedReader(
+                    new FileReader("C:\\Users\\igomez\\Desktop\\BECA\\atts-puros_-003_train_20160714.arff"));
 
-        double mutationProbability = 1.0 / problem.getNumberOfVariables() ;
-        mutation = new IntBinaryFlipMutation(mutationProbability);
+            Instances file = new Instances(reader);
+            reader.close();
 
-        selection = new BinaryTournamentSelection<IntegerSolution>() ;
+            AttributesProblem problem = new AttributesProblem(attributeCount, file);
+            Algorithm<List<IntegerSolution>> algorithm;
+            CrossoverOperator<IntegerSolution> crossover;
+            MutationOperator<IntegerSolution> mutation;
+            SelectionOperator<List<IntegerSolution>, IntegerSolution> selection;
 
-        algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
-                .setSelectionOperator(selection)
-                .setMaxIterations(250)
-                .setPopulationSize(100)
-                .build() ;
+            double crossoverProbability = 0.7 ;
+            double crossoverDistributionIndex = 20.0 ;
+            crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
 
-        AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
-                .execute() ;
+            double mutationProbability = 0.05 ;
+            mutation = new IntBinaryFlipMutation(mutationProbability);
 
-        List<IntegerSolution> population = algorithm.getResult() ;
-        long computingTime = algorithmRunner.getComputingTime() ;
+            selection = new BinaryTournamentSelection<IntegerSolution>() ;
 
-        JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
+            MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(6,problem);
+            //400 iteraciones puse en el doc
+            //50 individuos
+            algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
+                    .setSelectionOperator(selection)
+                    .setMaxIterations(5)
+                    .setPopulationSize(50)
+                    .setSolutionListEvaluator(evaluator)
+                    .build() ;
 
-        printFinalSolutionSet(population);
+            AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
+                    .execute() ;
+
+
+            List<IntegerSolution> population = algorithm.getResult() ;
+            long computingTime = algorithmRunner.getComputingTime() ;
+
+            JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
+
+            printFinalSolutionSet(population);
+
+            evaluator.shutdown();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
+
 
     public void executeProblem2(String[] args){
         String matrix = args[0];

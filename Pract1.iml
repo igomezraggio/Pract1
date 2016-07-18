@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="org.uma.jmetal:jmetal-algorithm:5.0" level="project" />
     <orderEntry type="library" exported="" name="org.uma.jmetal:jmetal-exec:5.0" level="project" />
+    <orderEntry type="library" name="weka" level="project" />
   </component>
 </module>
