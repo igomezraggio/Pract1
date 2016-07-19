@@ -48,10 +48,15 @@ public class Main {
     public static void main(String[] args){
 
         Integer attributeCount = Integer.valueOf(args[0]);
+        String path = args[1];
+        Integer threadCount = Integer.valueOf(args[2]);
+        Integer iterations = Integer.valueOf(args[3]);
+        Integer pop = Integer.valueOf(args[4]);
         try{
 
+            //"C:\\Users\\igomez\\Desktop\\Beca\\atts-puros_-003_train_20160714.arff"
             BufferedReader reader = new BufferedReader(
-                    new FileReader("C:\\Users\\igomez\\Desktop\\BECA\\atts-puros_-003_train_20160714.arff"));
+                    new FileReader(path));
 
             Instances file = new Instances(reader);
             reader.close();
@@ -71,13 +76,13 @@ public class Main {
 
             selection = new BinaryTournamentSelection<IntegerSolution>() ;
 
-            MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(6,problem);
+            MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(threadCount,problem);
             //400 iteraciones puse en el doc
             //50 individuos
             algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
                     .setSelectionOperator(selection)
-                    .setMaxIterations(5)
-                    .setPopulationSize(50)
+                    .setMaxIterations(iterations)
+                    .setPopulationSize(pop)
                     .setSolutionListEvaluator(evaluator)
                     .build() ;
 

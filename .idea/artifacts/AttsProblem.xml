@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AttsProblem">
+    <output-path>$PROJECT_DIR$/out/artifacts/AttsProblem</output-path>
+    <root id="archive" name="AttsProblem.jar">
+      <element id="module-output" name="Pract1" />
+      <element id="library" level="project" name="org.uma.jmetal:jmetal-algorithm:5.0" />
+      <element id="library" level="project" name="org.uma.jmetal:jmetal-exec:5.0" />
+      <element id="library" level="project" name="weka" />
+    </root>
+  </artifact>
+</component>

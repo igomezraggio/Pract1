@@ -122,7 +122,7 @@ public class AttributesProblem extends AbstractIntegerProblem {
             }
         }
         if(!attributes.isEmpty()){
-            attributes = attributes+",22"; //classIndex
+            attributes = attributes+",19"; //classIndex
 
             //ARMAR BIEN EL STRING Y MANDARSELO A WEKA PARA ASIGNAR EL COSTO AL OBJETIVO
             try{
