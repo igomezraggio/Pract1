@@ -2,24 +2,24 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2016-07-19T11:22:22</date>
-  <millis>1468938142511</millis>
+  <date>2016-07-19T23:07:00</date>
+  <millis>1468980420729</millis>
   <sequence>0</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
   <method>&lt;init&gt;</method>
   <thread>1</thread>
-  <message>THREADS: 2</message>
+  <message>THREADS: 6</message>
 </record>
 <record>
-  <date>2016-07-19T11:22:22</date>
-  <millis>1468938142531</millis>
+  <date>2016-07-19T23:07:00</date>
+  <millis>1468980420760</millis>
   <sequence>1</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
   <method>start</method>
   <thread>1</thread>
-  <message>Cores: 2</message>
+  <message>Cores: 6</message>
 </record>

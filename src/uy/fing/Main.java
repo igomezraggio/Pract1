@@ -2,6 +2,10 @@ package uy.fing;
 
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
+import org.uma.jmetal.algorithm.multiobjective.paes.PAESBuilder;
+import org.uma.jmetal.algorithm.multiobjective.pesa2.PESA2;
+import org.uma.jmetal.algorithm.multiobjective.pesa2.PESA2Builder;
+import org.uma.jmetal.algorithm.multiobjective.spea2.SPEA2Builder;
 import org.uma.jmetal.algorithm.singleobjective.geneticalgorithm.GenerationalGeneticAlgorithm;
 import org.uma.jmetal.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithmBuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
@@ -52,6 +56,7 @@ public class Main {
         Integer threadCount = Integer.valueOf(args[2]);
         Integer iterations = Integer.valueOf(args[3]);
         Integer pop = Integer.valueOf(args[4]);
+        Integer moea = Integer.valueOf(args[5]);; //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
         try{
 
             //"C:\\Users\\igomez\\Desktop\\Beca\\atts-puros_-003_train_20160714.arff"
@@ -62,47 +67,72 @@ public class Main {
             reader.close();
 
             AttributesProblem problem = new AttributesProblem(attributeCount, file);
-            Algorithm<List<IntegerSolution>> algorithm;
-            CrossoverOperator<IntegerSolution> crossover;
-            MutationOperator<IntegerSolution> mutation;
-            SelectionOperator<List<IntegerSolution>, IntegerSolution> selection;
 
-            double crossoverProbability = 0.7 ;
-            double crossoverDistributionIndex = 20.0 ;
-            crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
+            executeMoea(moea, attributeCount, threadCount, iterations, pop, problem);
 
-            double mutationProbability = 0.05 ;
-            mutation = new IntBinaryFlipMutation(mutationProbability);
-
-            selection = new BinaryTournamentSelection<IntegerSolution>() ;
-
-            MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(threadCount,problem);
-            //400 iteraciones puse en el doc
-            //50 individuos
-            algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
-                    .setSelectionOperator(selection)
-                    .setMaxIterations(iterations)
-                    .setPopulationSize(pop)
-                    .setSolutionListEvaluator(evaluator)
-                    .build() ;
-
-            AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
-                    .execute() ;
-
-
-            List<IntegerSolution> population = algorithm.getResult() ;
-            long computingTime = algorithmRunner.getComputingTime() ;
-
-            JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
-
-            printFinalSolutionSet(population);
-
-            evaluator.shutdown();
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
+    }
+
+    public static void executeMoea(int moea, int attributeCount, int threadCount, int iterations, int pop, AttributesProblem problem){
+
+        Algorithm<List<IntegerSolution>> algorithm = null;
+        CrossoverOperator<IntegerSolution> crossover;
+        MutationOperator<IntegerSolution> mutation;
+        SelectionOperator<List<IntegerSolution>, IntegerSolution> selection;
+
+        double crossoverProbability = 0.7 ;
+        double crossoverDistributionIndex = 20.0 ;
+        crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
+
+        double mutationProbability = 0.05 ;
+        mutation = new IntBinaryFlipMutation(mutationProbability);
+
+        selection = new BinaryTournamentSelection<IntegerSolution>() ;
+
+        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(threadCount,problem);
+
+        switch (moea){
+            case 0:
+                //400 iteraciones puse en el doc
+                //50 individuos
+                algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxIterations(iterations)
+                        .setPopulationSize(pop)
+                        .setSolutionListEvaluator(evaluator)
+                        .build() ;
+                break;
+            case 1:
+                algorithm = new SPEA2Builder<IntegerSolution>(problem, crossover, mutation)
+                        .setMaxIterations(iterations)
+                        .setPopulationSize(pop)
+                        .setSolutionListEvaluator(evaluator)
+                        .build() ;
+                break;
+            case 2:
+                algorithm = new PAESBuilder<IntegerSolution>(problem)
+                        .setArchiveSize(pop)
+                        .setMaxEvaluations(iterations)
+                        .setMutationOperator(mutation)
+                        .build() ;
+                break;
+        }
+
+        AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
+                .execute() ;
+
+        List<IntegerSolution> population = algorithm.getResult() ;
+        long computingTime = algorithmRunner.getComputingTime() ;
+
+        JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
+
+        printFinalSolutionSet(population);
+
+        evaluator.shutdown();
     }
 
 

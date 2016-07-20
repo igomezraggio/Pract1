@@ -7,8 +7,8 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" scope="PROVIDED" name="org.uma.jmetal:jmetal-algorithm:5.0" level="project" />
-    <orderEntry type="library" exported="" scope="PROVIDED" name="org.uma.jmetal:jmetal-exec:5.0" level="project" />
+    <orderEntry type="library" exported="" name="org.uma.jmetal:jmetal-algorithm:5.0" level="project" />
+    <orderEntry type="library" exported="" name="org.uma.jmetal:jmetal-exec:5.0" level="project" />
     <orderEntry type="library" exported="" name="weka" level="project" />
   </component>
 </module>
