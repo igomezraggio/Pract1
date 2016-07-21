@@ -25,6 +25,7 @@ public class AttributesProblem extends AbstractIntegerProblem {
 
     private Instances file;
     private int ind = 0;
+    private int classIndex = 0;
 
     public AttributesProblem(Integer attCount, Instances instance, RandomTree tree, Remove rmFilter){
 
@@ -41,7 +42,7 @@ public class AttributesProblem extends AbstractIntegerProblem {
         this.setLowerLimit(indLow);
         this.setUpperLimit(indUpp);
         this.setName("AttributesProblem");
-
+        this.classIndex = attCount+1;
     }
 
     public AttributesProblem(Integer attCount){
@@ -59,6 +60,7 @@ public class AttributesProblem extends AbstractIntegerProblem {
         this.setLowerLimit(indLow);
         this.setUpperLimit(indUpp);
         this.setName("AttributesProblem");
+        this.classIndex = attCount+1;
 
     }
 
@@ -78,6 +80,7 @@ public class AttributesProblem extends AbstractIntegerProblem {
         this.setUpperLimit(indUpp);
         this.setName("AttributesProblem");
         this.file = file;
+        this.classIndex = attCount+1;
     }
     @Override
     public void evaluate(IntegerSolution integerSolution) {
@@ -122,7 +125,7 @@ public class AttributesProblem extends AbstractIntegerProblem {
             }
         }
         if(!attributes.isEmpty()){
-            attributes = attributes+",19"; //classIndex
+            attributes = attributes+","+classIndex; //classIndex
 
             //ARMAR BIEN EL STRING Y MANDARSELO A WEKA PARA ASIGNAR EL COSTO AL OBJETIVO
             try{
