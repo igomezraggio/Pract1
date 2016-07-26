@@ -19,9 +19,13 @@ import org.uma.jmetal.operator.impl.mutation.PermutationSwapMutation;
 import org.uma.jmetal.operator.impl.selection.BinaryTournamentSelection;
 import org.uma.jmetal.operator.impl.selection.RankingAndCrowdingSelection;
 import org.uma.jmetal.operator.impl.selection.TournamentSelection;
+import org.uma.jmetal.qualityIndicator.CommandLineIndicatorRunner;
+import org.uma.jmetal.qualityindicator.QualityIndicator;
+import org.uma.jmetal.qualityindicator.impl.Hypervolume;
 import org.uma.jmetal.runner.multiobjective.NSGAIIIntegerRunner;
 import org.uma.jmetal.solution.IntegerSolution;
 import org.uma.jmetal.solution.PermutationSolution;
+import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.AlgorithmRunner;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.ProblemUtils;
@@ -29,6 +33,9 @@ import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator;
 import org.uma.jmetal.util.fileoutput.SolutionSetOutput;
+import org.uma.jmetal.util.front.Front;
+import org.uma.jmetal.util.front.imp.ArrayFront;
+import org.uma.jmetal.util.front.util.FrontNormalizer;
 import weka.classifiers.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
@@ -133,6 +140,24 @@ public class Main {
         printFinalSolutionSet(population);
 
         evaluator.shutdown();
+
+        Front referenceFront = null;
+        try {
+            referenceFront = new ArrayFront("C:\\Users\\igomez\\Desktop\\Beca\\Maestría\\AE\\Pract1\\FUN.tsv");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        FrontNormalizer frontNormalizer = new FrontNormalizer(referenceFront) ;
+        Front normalizedReferenceFront = frontNormalizer.normalize(referenceFront) ;
+
+        Hypervolume<List<? extends Solution<?>>> hypervolume ;
+        hypervolume = new Hypervolume<List<? extends Solution<?>>>(normalizedReferenceFront) ;
+
+        double hvValue = hypervolume.evaluate(population) ;
+
+        System.out.println("Hypervolume: " + hvValue);
+        //CommandLineIndicatorRunner runner = new CommandLineIndicatorRunner();
+
     }
 
 
