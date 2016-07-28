@@ -66,7 +66,6 @@ public class Main {
         Integer moea = Integer.valueOf(args[5]);; //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
         try{
 
-            //"C:\\Users\\igomez\\Desktop\\Beca\\atts-puros_-003_train_20160714.arff"
             BufferedReader reader = new BufferedReader(
                     new FileReader(path));
 
@@ -143,7 +142,7 @@ public class Main {
 
         Front referenceFront = null;
         try {
-            referenceFront = new ArrayFront("C:\\Users\\igomez\\Desktop\\Beca\\Maestría\\AE\\Pract1\\FUN.tsv");
+            referenceFront = new ArrayFront("C:\\Users\\igomez\\Desktop\\Beca\\Maestría\\AE\\Pract1\\FUN2.tsv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

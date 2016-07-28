@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2016-07-26T17:24:29</date>
-  <millis>1469564669721</millis>
+  <date>2016-07-28T16:42:20</date>
+  <millis>1469734940208</millis>
   <sequence>0</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>THREADS: 4</message>
 </record>
 <record>
-  <date>2016-07-26T17:24:29</date>
-  <millis>1469564669742</millis>
+  <date>2016-07-28T16:42:20</date>
+  <millis>1469734940252</millis>
   <sequence>1</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
@@ -22,4 +22,48 @@
   <method>start</method>
   <thread>1</thread>
   <message>Cores: 4</message>
+</record>
+<record>
+  <date>2016-07-28T16:49:09</date>
+  <millis>1469735349669</millis>
+  <sequence>2</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>uy.fing.Main</class>
+  <method>executeMoea</method>
+  <thread>1</thread>
+  <message>Total execution time: 408693ms</message>
+</record>
+<record>
+  <date>2016-07-28T16:49:13</date>
+  <millis>1469735353408</millis>
+  <sequence>3</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1469734940085</message>
+</record>
+<record>
+  <date>2016-07-28T16:49:13</date>
+  <millis>1469735353409</millis>
+  <sequence>4</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2016-07-28T16:49:13</date>
+  <millis>1469735353410</millis>
+  <sequence>5</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
 </record>
