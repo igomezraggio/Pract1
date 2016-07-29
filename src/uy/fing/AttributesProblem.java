@@ -135,7 +135,6 @@ public class AttributesProblem extends AbstractIntegerProblem {
                 train.setClassIndex(train.numAttributes() -1);
 
                 RandomTree tree = new RandomTree();
-                tree.setMaxDepth(10);
 
                 Remove rmFilter = new Remove();
                 rmFilter.setAttributeIndices(attributes);

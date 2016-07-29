@@ -26,6 +26,7 @@ import org.uma.jmetal.runner.multiobjective.NSGAIIIntegerRunner;
 import org.uma.jmetal.solution.IntegerSolution;
 import org.uma.jmetal.solution.PermutationSolution;
 import org.uma.jmetal.solution.Solution;
+import org.uma.jmetal.solution.impl.DefaultIntegerSolution;
 import org.uma.jmetal.util.AlgorithmRunner;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.ProblemUtils;
@@ -63,7 +64,8 @@ public class Main {
         Integer threadCount = Integer.valueOf(args[2]);
         Integer iterations = Integer.valueOf(args[3]);
         Integer pop = Integer.valueOf(args[4]);
-        Integer moea = Integer.valueOf(args[5]);; //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
+        Integer moea = Integer.valueOf(args[5]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
+
         try{
 
             BufferedReader reader = new BufferedReader(
@@ -91,8 +93,7 @@ public class Main {
         SelectionOperator<List<IntegerSolution>, IntegerSolution> selection;
 
         double crossoverProbability = 0.7 ;
-        double crossoverDistributionIndex = 20.0 ;
-        crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex) ;
+        crossover = new IntegerSSOCFCrossover(crossoverProbability) ;
 
         double mutationProbability = 0.05 ;
         mutation = new IntBinaryFlipMutation(mutationProbability);
@@ -140,6 +141,7 @@ public class Main {
 
         evaluator.shutdown();
 
+        
         Front referenceFront = null;
         try {
             referenceFront = new ArrayFront("C:\\Users\\igomez\\Desktop\\Beca\\Maestría\\AE\\Pract1\\FUN2.tsv");
