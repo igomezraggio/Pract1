@@ -6,15 +6,10 @@ import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.operator.CrossoverOperator;
 import org.uma.jmetal.operator.MutationOperator;
 import org.uma.jmetal.operator.SelectionOperator;
-import org.uma.jmetal.operator.impl.crossover.SBXCrossover;
-import org.uma.jmetal.operator.impl.mutation.PolynomialMutation;
 import org.uma.jmetal.operator.impl.selection.BinaryTournamentSelection;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.problem.multiobjective.zdt.*;
 import org.uma.jmetal.qualityindicator.impl.*;
 import org.uma.jmetal.qualityindicator.impl.hypervolume.PISAHypervolume;
-import org.uma.jmetal.qualityindicator.impl.hypervolume.WFGHypervolume;
-import org.uma.jmetal.solution.DoubleSolution;
 import org.uma.jmetal.solution.IntegerSolution;
 import org.uma.jmetal.util.JMetalException;
 import org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator;
@@ -31,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by igomez on 31/07/2016.
@@ -54,7 +50,11 @@ public class NSGAIIStudy  {
 
         List<Problem<IntegerSolution>> problemList = Arrays.<Problem<IntegerSolution>>asList(new AttributesProblem(attributeCount, file)) ;
 
-        List<TaggedAlgorithm<List<IntegerSolution>>> algorithmList = configureAlgorithmList(problemList, INDEPENDENT_RUNS) ;
+        List<TaggedAlgorithm<List<IntegerSolution>>> algorithmList = null;
+
+        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(2,problemList.get(0));
+
+        algorithmList = configureAlgorithmList(problemList, INDEPENDENT_RUNS, evaluator);
 
         List<String> referenceFrontFileNames = Arrays.asList("ATPR.pf") ;
 
@@ -65,7 +65,8 @@ public class NSGAIIStudy  {
                         .setExperimentBaseDirectory(experimentBaseDirectory)
                         .setOutputParetoFrontFileName("FUN")
                         .setOutputParetoSetFileName("VAR")
-                        .setReferenceFrontDirectory("C:\\Users\\igomez\\Desktop\\BECA\\AttsProblem\\NSGAIIStudy\\data\\NSGAIIa\\AttributesProblem\\ParetoFronts")
+                        //C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIStudy\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
+                        .setReferenceFrontDirectory("C:\\Users\\igomez\\Desktop\\Beca\\AttsProblem\\NSGAIIStudy\\data\\NSGAIIa\\AttributesProblem\\ParetoFronts")
                         .setReferenceFrontFileNames(referenceFrontFileNames)
                         .setIndicatorList(Arrays.asList(
                                 new Epsilon<IntegerSolution>(),
@@ -84,6 +85,8 @@ public class NSGAIIStudy  {
         new GenerateWilcoxonTestTablesWithR<>(experiment).run() ;
         new GenerateFriedmanTestTables<>(experiment).run();
         new GenerateBoxplotsWithR<>(experiment).setRows(3).setColumns(3).run() ;
+
+        evaluator.shutdown();
     }
 
     /**
@@ -96,7 +99,7 @@ public class NSGAIIStudy  {
      * @return
      */
     static List<TaggedAlgorithm<List<IntegerSolution>>> configureAlgorithmList(
-            List<Problem<IntegerSolution>> problemList, int independentRuns) {
+            List<Problem<IntegerSolution>> problemList, int independentRuns,MultithreadedSolutionListEvaluator evaluator){
         List<TaggedAlgorithm<List<IntegerSolution>>> algorithms = new ArrayList<>() ;
 
         double crossoverProbability = 0.7 ;
@@ -109,19 +112,22 @@ public class NSGAIIStudy  {
 
         selection = new BinaryTournamentSelection<IntegerSolution>() ;
 
-        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(4,problemList.get(0));
 
+        Integer maxEvaluations = 20;
+        Integer populationSize = 4;
+        int maxIterations = maxEvaluations / populationSize;
         for (int run = 0; run < independentRuns; run++) {
 
             for (int i = 0; i < problemList.size(); i++) {
                 Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
                         .setSelectionOperator(selection)
-                        .setMaxEvaluations(6)
-                        .setPopulationSize(6)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
                         .setSolutionListEvaluator(evaluator)
                         .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
                         .build();
                 algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIa", problemList.get(i), run));
+
             }
             /*
             for (int i = 0; i < problemList.size(); i++) {
@@ -155,4 +161,6 @@ public class NSGAIIStudy  {
 
         return algorithms ;
     }
+
+
 }
