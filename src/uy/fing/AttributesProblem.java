@@ -8,6 +8,7 @@ import org.uma.jmetal.util.binarySet.BinarySet;
 import weka.classifiers.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomForest;
 import weka.classifiers.trees.RandomTree;
 import weka.core.Debug;
 import weka.core.Instances;
@@ -135,6 +136,7 @@ public class AttributesProblem extends AbstractIntegerProblem {
                 train.setClassIndex(train.numAttributes() -1);
 
                 RandomTree tree = new RandomTree();
+                tree.setMaxDepth(10);
 
                 Remove rmFilter = new Remove();
                 rmFilter.setAttributeIndices(attributes);

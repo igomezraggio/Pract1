@@ -2,24 +2,486 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2016-07-29T17:28:46</date>
-  <millis>1469824126297</millis>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275875</millis>
   <sequence>0</sequence>
-  <logger>jMetal</logger>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.JMetalLogger</class>
+  <method>configureLoggers</method>
+  <thread>1</thread>
+  <message>Loggers configured with null</message>
+</record>
+<record>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275910</millis>
+  <sequence>1</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
   <method>&lt;init&gt;</method>
   <thread>1</thread>
-  <message>THREADS: 2</message>
+  <message>THREADS: 4</message>
 </record>
 <record>
-  <date>2016-07-29T17:28:46</date>
-  <millis>1469824126340</millis>
-  <sequence>1</sequence>
-  <logger>jMetal</logger>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275912</millis>
+  <sequence>2</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
   <method>start</method>
   <thread>1</thread>
-  <message>Cores: 2</message>
+  <message>Cores: 4</message>
+</record>
+<record>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275927</millis>
+  <sequence>3</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ExecuteAlgorithms</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>ExecuteAlgorithms: Preparing output directory</message>
+</record>
+<record>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275928</millis>
+  <sequence>4</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.util.MultithreadedExperimentExecutor</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>THREADS: 1</message>
+</record>
+<record>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275928</millis>
+  <sequence>5</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.util.MultithreadedExperimentExecutor</class>
+  <method>start</method>
+  <thread>1</thread>
+  <message>Cores: 1</message>
+</record>
+<record>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275929</millis>
+  <sequence>6</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.util.EvaluationTask</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message> Task: NSGAIIa, problem: AttributesProblem, run: 0</message>
+</record>
+<record>
+  <date>2016-07-31T17:34:35</date>
+  <millis>1469997275932</millis>
+  <sequence>7</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.util.EvaluationTask</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message> Running algorithm: NSGAIIa, problem: AttributesProblem, run: 0, funFile: C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/FUN0.tsv</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402594</millis>
+  <sequence>8</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Computing indicator: EP</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402595</millis>
+  <sequence>9</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIStudy\data\NSGAIIa\AttributesProblem\ParetoFronts/ATPR.pf</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402598</millis>
+  <sequence>10</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/EP exist.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402598</millis>
+  <sequence>11</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/EP is a file. Deleting file.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402600</millis>
+  <sequence>12</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File succesfully deleted.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402601</millis>
+  <sequence>13</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>EP: 0.7262871792434605</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402605</millis>
+  <sequence>14</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Computing indicator: SPREAD</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402605</millis>
+  <sequence>15</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIStudy\data\NSGAIIa\AttributesProblem\ParetoFronts/ATPR.pf</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402607</millis>
+  <sequence>16</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/SPREAD exist.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402607</millis>
+  <sequence>17</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/SPREAD is a file. Deleting file.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402608</millis>
+  <sequence>18</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File succesfully deleted.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402612</millis>
+  <sequence>19</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>SPREAD: 0.8813206784598395</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402615</millis>
+  <sequence>20</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Computing indicator: GD</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402615</millis>
+  <sequence>21</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIStudy\data\NSGAIIa\AttributesProblem\ParetoFronts/ATPR.pf</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402617</millis>
+  <sequence>22</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/GD exist.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402617</millis>
+  <sequence>23</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/GD is a file. Deleting file.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402618</millis>
+  <sequence>24</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File succesfully deleted.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402619</millis>
+  <sequence>25</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>GD: 0.27509922212052157</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402622</millis>
+  <sequence>26</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Computing indicator: HV</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402623</millis>
+  <sequence>27</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIStudy\data\NSGAIIa\AttributesProblem\ParetoFronts/ATPR.pf</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402624</millis>
+  <sequence>28</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/HV exist.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402624</millis>
+  <sequence>29</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/HV is a file. Deleting file.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402626</millis>
+  <sequence>30</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File succesfully deleted.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402626</millis>
+  <sequence>31</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>HV: 0.1125202219930547</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402629</millis>
+  <sequence>32</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Computing indicator: IGD</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402630</millis>
+  <sequence>33</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIStudy\data\NSGAIIa\AttributesProblem\ParetoFronts/ATPR.pf</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402631</millis>
+  <sequence>34</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/IGD exist.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402631</millis>
+  <sequence>35</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/IGD is a file. Deleting file.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402632</millis>
+  <sequence>36</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File succesfully deleted.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402633</millis>
+  <sequence>37</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>IGD: 0.18843036607521343</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402636</millis>
+  <sequence>38</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Computing indicator: IGD+</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402636</millis>
+  <sequence>39</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIStudy\data\NSGAIIa\AttributesProblem\ParetoFronts/ATPR.pf</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402637</millis>
+  <sequence>40</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/IGD+ exist.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402638</millis>
+  <sequence>41</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/NSGAIIStudy/data/NSGAIIa/AttributesProblem/IGD+ is a file. Deleting file.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402639</millis>
+  <sequence>42</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>resetFile</method>
+  <thread>1</thread>
+  <message>File succesfully deleted.</message>
+</record>
+<record>
+  <date>2016-07-31T17:36:42</date>
+  <millis>1469997402640</millis>
+  <sequence>43</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>IGD+: 0.5413849608423449</message>
 </record>

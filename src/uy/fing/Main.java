@@ -33,7 +33,6 @@ import org.uma.jmetal.util.ProblemUtils;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator;
-import org.uma.jmetal.util.fileoutput.SolutionSetOutput;
 import org.uma.jmetal.util.front.Front;
 import org.uma.jmetal.util.front.imp.ArrayFront;
 import org.uma.jmetal.util.front.util.FrontNormalizer;
@@ -100,6 +99,7 @@ public class Main {
 
         selection = new BinaryTournamentSelection<IntegerSolution>() ;
 
+
         MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(threadCount,problem);
 
         switch (moea){
@@ -108,7 +108,7 @@ public class Main {
                 //50 individuos
                 algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
                         .setSelectionOperator(selection)
-                        .setMaxIterations(iterations)
+                        .setMaxEvaluations(iterations)
                         .setPopulationSize(pop)
                         .setSolutionListEvaluator(evaluator)
                         .build() ;
@@ -141,10 +141,10 @@ public class Main {
 
         evaluator.shutdown();
 
-        
+        /*
         Front referenceFront = null;
         try {
-            referenceFront = new ArrayFront("C:\\Users\\igomez\\Desktop\\Beca\\Maestría\\AE\\Pract1\\FUN2.tsv");
+            referenceFront = new ArrayFront("C:\\Users\\igomez\\IdeaProjects\\Pract1\\FUN2.tsv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -158,6 +158,8 @@ public class Main {
 
         System.out.println("Hypervolume: " + hvValue);
         //CommandLineIndicatorRunner runner = new CommandLineIndicatorRunner();
+
+        */
 
     }
 

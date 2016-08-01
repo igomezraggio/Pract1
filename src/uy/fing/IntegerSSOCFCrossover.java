@@ -84,4 +84,9 @@ public class IntegerSSOCFCrossover implements CrossoverOperator<IntegerSolution>
 
         return offspring;
     }
+
+    @Override
+    public int getNumberOfParents() {
+        return 2;
+    }
 }

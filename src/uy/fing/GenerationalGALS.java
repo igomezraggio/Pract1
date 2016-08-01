@@ -31,6 +31,7 @@ public class GenerationalGALS<S extends Solution<?>> extends AbstractGeneticAlgo
     private int localSearchIterations = 0;
 
     public GenerationalGALS(Problem<S> problem, int maxEvaluations, int populationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator, SelectionOperator<List<S>, S> selectionOperator, SolutionListEvaluator<S> evaluator) {
+        super(problem);
         this.problem = problem;
         this.maxEvaluations = maxEvaluations;
         this.populationSize = populationSize;
@@ -124,5 +125,15 @@ public class GenerationalGALS<S extends Solution<?>> extends AbstractGeneticAlgo
     public S getResult() {
         Collections.sort(this.getPopulation(), this.comparator);
         return (S) this.getPopulation().get(0);
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public String getDescription() {
+        return null;
     }
 }
