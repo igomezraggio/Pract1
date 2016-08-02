@@ -52,7 +52,7 @@ public class NSGAIIStudy  {
 
         List<TaggedAlgorithm<List<IntegerSolution>>> algorithmList = null;
 
-        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(2,problemList.get(0));
+        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(6,problemList.get(0));
 
         algorithmList = configureAlgorithmList(problemList, INDEPENDENT_RUNS, evaluator);
 
@@ -113,8 +113,8 @@ public class NSGAIIStudy  {
         selection = new BinaryTournamentSelection<IntegerSolution>() ;
 
 
-        Integer maxEvaluations = 20;
-        Integer populationSize = 4;
+        Integer maxEvaluations = 200;
+        Integer populationSize = 8;
         int maxIterations = maxEvaluations / populationSize;
         for (int run = 0; run < independentRuns; run++) {
 
@@ -129,16 +129,97 @@ public class NSGAIIStudy  {
                 algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIa", problemList.get(i), run));
 
             }
-            /*
+            mutationProbability = 0.01 ;
+            mutation = new IntBinaryFlipMutation(mutationProbability);
             for (int i = 0; i < problemList.size(); i++) {
-                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), new SBXCrossover(1.0, 20.0),
-                        new PolynomialMutation(1.0 / problemList.get(i).getNumberOfVariables(), 20.0))
-                        .setMaxEvaluations(25000)
-                        .setPopulationSize(100)
+                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
+                        .setSolutionListEvaluator(evaluator)
+                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
                         .build();
                 algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIb", problemList.get(i), run));
             }
+            crossoverProbability = 0.8 ;
+            mutationProbability = 0.05 ;
+            crossover = new IntegerSSOCFCrossover(crossoverProbability) ;
+            for (int i = 0; i < problemList.size(); i++) {
+                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
+                        .setSolutionListEvaluator(evaluator)
+                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
+                        .build();
+                algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIaa", problemList.get(i), run));
 
+            }
+            mutationProbability = 0.01 ;
+            mutation = new IntBinaryFlipMutation(mutationProbability);
+            for (int i = 0; i < problemList.size(); i++) {
+                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
+                        .setSolutionListEvaluator(evaluator)
+                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
+                        .build();
+                algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIab", problemList.get(i), run));
+            }
+            crossoverProbability = 0.9 ;
+            mutationProbability = 0.05 ;
+            crossover = new IntegerSSOCFCrossover(crossoverProbability) ;
+            for (int i = 0; i < problemList.size(); i++) {
+                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
+                        .setSolutionListEvaluator(evaluator)
+                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
+                        .build();
+                algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIba", problemList.get(i), run));
+
+            }
+            mutationProbability = 0.01 ;
+            mutation = new IntBinaryFlipMutation(mutationProbability);
+            for (int i = 0; i < problemList.size(); i++) {
+                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
+                        .setSolutionListEvaluator(evaluator)
+                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
+                        .build();
+                algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIbb", problemList.get(i), run));
+            }
+            crossoverProbability = 1.0 ;
+            mutationProbability = 0.05 ;
+            crossover = new IntegerSSOCFCrossover(crossoverProbability) ;
+            for (int i = 0; i < problemList.size(); i++) {
+                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
+                        .setSolutionListEvaluator(evaluator)
+                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
+                        .build();
+                algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIca", problemList.get(i), run));
+
+            }
+            mutationProbability = 0.01 ;
+            mutation = new IntBinaryFlipMutation(mutationProbability);
+            for (int i = 0; i < problemList.size(); i++) {
+                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                        .setSelectionOperator(selection)
+                        .setMaxEvaluations(maxEvaluations)
+                        .setPopulationSize(populationSize)
+                        .setSolutionListEvaluator(evaluator)
+                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
+                        .build();
+                algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIcb", problemList.get(i), run));
+            }
+            /*
             for (int i = 0; i < problemList.size(); i++) {
                 Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), new SBXCrossover(1.0, 40.0),
                         new PolynomialMutation(1.0 / problemList.get(i).getNumberOfVariables(), 40.0))
