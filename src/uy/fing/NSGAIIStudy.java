@@ -112,9 +112,26 @@ public class NSGAIIStudy  {
 
         selection = new BinaryTournamentSelection<IntegerSolution>() ;
 
+        ArrayList<CrossoverOperator<IntegerSolution>> crossovers = new ArrayList<>();
+        ArrayList<MutationOperator<IntegerSolution>> mutations = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            crossovers.add(i,new IntegerSSOCFCrossover(crossoverProbability));
+            crossoverProbability += 0.1;
+        }
+        for (int i = 0; i < 5; i++) {
+            mutations.add(i,new IntBinaryFlipMutation(mutationProbability));
+            mutationProbability += 0.01;
+        }
 
         Integer maxEvaluations = 200;
         Integer populationSize = 8;
+
+        ArrayList populations = new ArrayList();
+        for (int i = 0; i < 5; i++) {
+            populations.add(i,populationSize + 5);
+        }
+        ArrayList evaluations = new ArrayList();
+
         int maxIterations = maxEvaluations / populationSize;
         for (int run = 0; run < independentRuns; run++) {
 
