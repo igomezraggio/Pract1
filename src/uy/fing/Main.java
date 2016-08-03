@@ -33,9 +33,12 @@ import org.uma.jmetal.util.ProblemUtils;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator;
+import org.uma.jmetal.util.fileoutput.SolutionListOutput;
+import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.front.Front;
 import org.uma.jmetal.util.front.imp.ArrayFront;
 import org.uma.jmetal.util.front.util.FrontNormalizer;
+import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import weka.classifiers.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
@@ -45,6 +48,7 @@ import weka.core.Instances;
 import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Handler;
 
@@ -63,7 +67,7 @@ public class Main {
         Integer threadCount = Integer.valueOf(args[2]);
         Integer iterations = Integer.valueOf(args[3]);
         Integer pop = Integer.valueOf(args[4]);
-        Integer moea = Integer.valueOf(args[5]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
+        //Integer moea = Integer.valueOf(args[5]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
 
         try{
 
@@ -75,16 +79,19 @@ public class Main {
 
             AttributesProblem problem = new AttributesProblem(attributeCount, file);
 
-            executeMoea(moea, attributeCount, threadCount, iterations, pop, problem);
+            String pareto1 = executeMoea(0, attributeCount, threadCount, iterations, pop, problem);
+            String pareto2 = executeMoea(1, attributeCount, threadCount, iterations, pop, problem);
 
+            //ArrayList<>
 
+            //generateGlobalParetoFront();
         }catch (Exception e){
             e.printStackTrace();
         }
 
     }
 
-    public static void executeMoea(int moea, int attributeCount, int threadCount, int iterations, int pop, AttributesProblem problem){
+    public static String executeMoea(int moea, int attributeCount, int threadCount, int iterations, int pop, AttributesProblem problem){
 
         Algorithm<List<IntegerSolution>> algorithm = null;
         CrossoverOperator<IntegerSolution> crossover;
@@ -102,16 +109,18 @@ public class Main {
 
         MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(threadCount,problem);
 
+        String stringMoea = "";
         switch (moea){
             case 0:
                 //400 iteraciones puse en el doc
                 //50 individuos
                 algorithm = new NSGAIIBuilder<IntegerSolution>(problem, crossover, mutation)
                         .setSelectionOperator(selection)
-                        .setMaxEvaluations(iterations)
+                        .setMaxEvaluations(iterations*pop)
                         .setPopulationSize(pop)
                         .setSolutionListEvaluator(evaluator)
                         .build() ;
+                stringMoea = "NSGAII";
                 break;
             case 1:
                 algorithm = new SPEA2Builder<IntegerSolution>(problem, crossover, mutation)
@@ -119,6 +128,7 @@ public class Main {
                         .setPopulationSize(pop)
                         .setSolutionListEvaluator(evaluator)
                         .build() ;
+                stringMoea = "SPEA2";
                 break;
             case 2:
                 algorithm = new PAESBuilder<IntegerSolution>(problem)
@@ -126,6 +136,7 @@ public class Main {
                         .setMaxEvaluations(iterations)
                         .setMutationOperator(mutation)
                         .build() ;
+                stringMoea = "PAES";
                 break;
         }
 
@@ -137,7 +148,18 @@ public class Main {
 
         JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
 
-        printFinalSolutionSet(population);
+        //printFinalSolutionSet(population);
+
+
+        new SolutionListOutput(population)
+                .setSeparator("\t")
+                .setVarFileOutputContext(new DefaultFileOutputContext("VAR"+stringMoea+".tsv"))
+                .setFunFileOutputContext(new DefaultFileOutputContext("FUN"+stringMoea+".tsv"))
+                .print();
+
+        JMetalLogger.logger.info("Random seed: " + JMetalRandom.getInstance().getSeed());
+        JMetalLogger.logger.info("Objectives values have been written to file FUN"+stringMoea+".tsv");
+        JMetalLogger.logger.info("Variables values have been written to file VAR"+stringMoea+".tsv");
 
         evaluator.shutdown();
 
@@ -160,6 +182,8 @@ public class Main {
         //CommandLineIndicatorRunner runner = new CommandLineIndicatorRunner();
 
         */
+        stringMoea = "VAR"+stringMoea+".tsv";
+        return stringMoea;
 
     }
 

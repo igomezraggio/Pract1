@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651497</millis>
+  <date>2016-08-03T13:52:54</date>
+  <millis>1470243174430</millis>
   <sequence>0</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -13,366 +13,123 @@
   <message>Loggers configured with null</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651533</millis>
+  <date>2016-08-03T13:52:54</date>
+  <millis>1470243174521</millis>
   <sequence>1</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
   <method>&lt;init&gt;</method>
   <thread>1</thread>
-  <message>THREADS: 6</message>
+  <message>THREADS: 2</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651536</millis>
+  <date>2016-08-03T13:52:54</date>
+  <millis>1470243174523</millis>
   <sequence>2</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
   <method>start</method>
   <thread>1</thread>
-  <message>Cores: 6</message>
+  <message>Cores: 2</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651551</millis>
+  <date>2016-08-03T13:58:14</date>
+  <millis>1470243494974</millis>
   <sequence>3</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ExecuteAlgorithms</class>
-  <method>run</method>
+  <class>uy.fing.Main</class>
+  <method>executeMoea</method>
   <thread>1</thread>
-  <message>ExecuteAlgorithms: Preparing output directory</message>
+  <message>Total execution time: 320433ms</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651552</millis>
+  <date>2016-08-03T13:58:15</date>
+  <millis>1470243495023</millis>
   <sequence>4</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.util.MultithreadedExperimentExecutor</class>
-  <method>&lt;init&gt;</method>
+  <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>THREADS: 1</message>
+  <message>Random seed: 1470243174332</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651553</millis>
+  <date>2016-08-03T13:58:15</date>
+  <millis>1470243495024</millis>
   <sequence>5</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.util.MultithreadedExperimentExecutor</class>
-  <method>start</method>
+  <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Cores: 1</message>
+  <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651554</millis>
+  <date>2016-08-03T13:58:15</date>
+  <millis>1470243495024</millis>
   <sequence>6</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.util.EvaluationTask</class>
-  <method>&lt;init&gt;</method>
+  <class>org.uma.jmetal.runner.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message> Task: SPEA2cc, problem: AttributesProblem, run: 0</message>
+  <message>Variables values have been written to file VAR.tsv</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651556</millis>
+  <date>2016-08-03T15:17:21</date>
+  <millis>1470248241266</millis>
   <sequence>7</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.util.EvaluationTask</class>
-  <method>&lt;init&gt;</method>
+  <class>uy.fing.Main</class>
+  <method>executeMoea</method>
   <thread>1</thread>
-  <message>Creating C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem</message>
+  <message>Random seed: 1470243174332</message>
 </record>
 <record>
-  <date>2016-08-02T22:27:31</date>
-  <millis>1470187651557</millis>
+  <date>2016-08-03T15:17:21</date>
+  <millis>1470248241267</millis>
   <sequence>8</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.util.EvaluationTask</class>
-  <method>call</method>
-  <thread>13</thread>
-  <message> Running algorithm: SPEA2cc, problem: AttributesProblem, run: 0, funFile: C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem/FUN0.tsv</message>
+  <class>uy.fing.Main</class>
+  <method>executeMoea</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUNNSGAII.tsv</message>
 </record>
 <record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230270</millis>
+  <date>2016-08-03T15:17:21</date>
+  <millis>1470248241267</millis>
   <sequence>9</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
+  <class>uy.fing.Main</class>
+  <method>executeMoea</method>
   <thread>1</thread>
-  <message>Computing indicator: EP</message>
+  <message>Variables values have been written to file VARNSGAII.tsv</message>
 </record>
 <record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230271</millis>
+  <date>2016-08-03T15:17:21</date>
+  <millis>1470248241268</millis>
   <sequence>10</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
+  <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
+  <method>&lt;init&gt;</method>
   <thread>1</thread>
-  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\SPEA2Experiment\data\SPEA2\AttributesProblem\ParetoFronts/ATPR.pf</message>
+  <message>THREADS: 2</message>
 </record>
 <record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230276</millis>
+  <date>2016-08-03T15:17:21</date>
+  <millis>1470248241268</millis>
   <sequence>11</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>resetFile</method>
+  <class>org.uma.jmetal.util.parallel.impl.MultithreadedEvaluator</class>
+  <method>start</method>
   <thread>1</thread>
-  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem/EP does NOT exist.</message>
+  <message>Cores: 2</message>
 </record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230278</millis>
-  <sequence>12</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>EP: 0.6464924514691679</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230282</millis>
-  <sequence>13</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>Computing indicator: SPREAD</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230282</millis>
-  <sequence>14</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\SPEA2Experiment\data\SPEA2\AttributesProblem\ParetoFronts/ATPR.pf</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230283</millis>
-  <sequence>15</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>resetFile</method>
-  <thread>1</thread>
-  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem/SPREAD does NOT exist.</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230285</millis>
-  <sequence>16</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>SPREAD: 0.6462463042015747</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230288</millis>
-  <sequence>17</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>Computing indicator: GD</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230288</millis>
-  <sequence>18</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\SPEA2Experiment\data\SPEA2\AttributesProblem\ParetoFronts/ATPR.pf</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230289</millis>
-  <sequence>19</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>resetFile</method>
-  <thread>1</thread>
-  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem/GD does NOT exist.</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230290</millis>
-  <sequence>20</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>GD: 0.15287958217348238</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230293</millis>
-  <sequence>21</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>Computing indicator: HV</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230294</millis>
-  <sequence>22</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\SPEA2Experiment\data\SPEA2\AttributesProblem\ParetoFronts/ATPR.pf</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230295</millis>
-  <sequence>23</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>resetFile</method>
-  <thread>1</thread>
-  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem/HV does NOT exist.</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230296</millis>
-  <sequence>24</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>HV: 0.2117351337378461</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230298</millis>
-  <sequence>25</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>Computing indicator: IGD</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230299</millis>
-  <sequence>26</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\SPEA2Experiment\data\SPEA2\AttributesProblem\ParetoFronts/ATPR.pf</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230300</millis>
-  <sequence>27</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>resetFile</method>
-  <thread>1</thread>
-  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem/IGD does NOT exist.</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230301</millis>
-  <sequence>28</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>IGD: 0.1435633712849024</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230304</millis>
-  <sequence>29</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>Computing indicator: IGD+</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230304</millis>
-  <sequence>30</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>RF: C:\Users\igomez\Desktop\BECA\AttsProblem\SPEA2Experiment\data\SPEA2\AttributesProblem\ParetoFronts/ATPR.pf</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230305</millis>
-  <sequence>31</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>resetFile</method>
-  <thread>1</thread>
-  <message>File C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/data/SPEA2cc/AttributesProblem/IGD+ does NOT exist.</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230306</millis>
-  <sequence>32</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.ComputeQualityIndicators</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>IGD+: 0.4001902430790575</message>
-</record>
-<record>
-  <date>2016-08-02T22:37:10</date>
-  <millis>1470188230365</millis>
-  <sequence>33</sequence>
-  <logger>org.uma.jmetal.util.JMetalLogger</logger>
-  <level>INFO</level>
-  <class>org.uma.jmetal.util.experiment.component.GenerateLatexTablesWithStatistics</class>
-  <method>generateLatexScript</method>
-  <thread>1</thread>
-  <message>Creating C:\Users\igomez\Desktop\BECA\AttsProblem/SPEA2Experiment/latex directory</message>
-</record>
-</log>
