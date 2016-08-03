@@ -49,7 +49,9 @@ import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.logging.Handler;
 
 import static org.uma.jmetal.runner.AbstractAlgorithmRunner.printFinalSolutionSet;
@@ -82,7 +84,37 @@ public class Main {
             String pareto1 = executeMoea(0, attributeCount, threadCount, iterations, pop, problem);
             String pareto2 = executeMoea(1, attributeCount, threadCount, iterations, pop, problem);
 
-            //ArrayList<>
+            BufferedReader reader1 = new BufferedReader(
+                    new FileReader(pareto1));
+
+            String line;
+            String token;
+            StringTokenizer tokenizer;
+            Double obj1;
+            Double obj2;
+
+            HashMap<Double,Double> globalPareto = new HashMap<>();
+            String s;
+            line = reader1.readLine();
+
+            while(line != null){
+                tokenizer = new StringTokenizer(line, " ");
+
+                obj1 = Double.valueOf(tokenizer.nextToken());
+                obj2 = Double.valueOf(tokenizer.nextToken());
+                if (globalPareto.containsKey(obj1)){
+                    Double val = globalPareto.get(obj1);
+                    if (val > obj2){
+                        globalPareto.replace(obj1,val,obj2);
+                    }
+                }else{
+                    globalPareto.put(obj1,obj2); //REVISAR POR SI QUEDAN DOMINADAS!
+                }
+                line = reader.readLine(); //next line
+            }
+
+            BufferedReader reader2 = new BufferedReader(
+                    new FileReader(pareto2));
 
             //generateGlobalParetoFront();
         }catch (Exception e){
