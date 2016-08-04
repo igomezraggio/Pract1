@@ -69,7 +69,7 @@ public class Main {
         //Integer moea = Integer.valueOf(args[5]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
 
         try{
-
+            /*
             BufferedReader reader = new BufferedReader(
                     new FileReader(path));
 
@@ -78,43 +78,20 @@ public class Main {
 
             AttributesProblem problem = new AttributesProblem(attributeCount, file);
 
+
             String pareto1 = executeMoea(0, attributeCount, threadCount, iterations, pop, problem);
             String pareto2 = executeMoea(1, attributeCount, threadCount, iterations, pop, problem);
+            */
 
-            BufferedReader reader1 = new BufferedReader(
-                    new FileReader(pareto1));
+            String pareto1 = "FUN.tsv";
+            String pareto2 = "FUN2.tsv";
 
+            ArrayList<String> fronts = new ArrayList();
+            fronts.add(pareto1);
+            fronts.add(pareto2);
 
-            String line;
-            String token;
-            StringTokenizer tokenizer;
-            Double obj1;
-            Double obj2;
+            generateGblFront(fronts);
 
-            HashMap<Double,Double> globalPareto = new HashMap<>();
-            String s;
-            line = reader1.readLine();
-
-            while(line != null){
-                tokenizer = new StringTokenizer(line, " ");
-
-                obj1 = Double.valueOf(tokenizer.nextToken());
-                obj2 = Double.valueOf(tokenizer.nextToken());
-                if (globalPareto.containsKey(obj1)){
-                    Double val = globalPareto.get(obj1);
-                    if (val > obj2){
-                        globalPareto.replace(obj1,val,obj2);
-                    }
-                }else{
-                    globalPareto.put(obj1,obj2); //REVISAR POR SI QUEDAN DOMINADAS!
-                }
-                line = reader.readLine(); //next line
-            }
-
-            BufferedReader reader2 = new BufferedReader(
-                    new FileReader(pareto2));
-
-            //generateGlobalParetoFront();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -217,7 +194,7 @@ public class Main {
 
     }
 
-    public void generateGblFront(ArrayList<String> paretoFronts){
+    public static void generateGblFront(ArrayList<String> paretoFronts){
         BufferedReader reader = null;
         String line;
         String token;
@@ -246,13 +223,13 @@ public class Main {
                                 Double glParetoKey = null;
                                 for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
                                     Double value = e.getValue();
-                                    if (value == obj2){
+                                    if (value.doubleValue() == obj2.doubleValue()){
                                         glParetoKey = e.getKey();
                                         break;
                                     }
                                 }
-                                if(glParetoKey == obj1){
-                                    globalPareto.replace(obj1,globalPareto.get(obj1),obj2);
+                                if(glParetoKey.doubleValue() > obj1.doubleValue()){
+                                    globalPareto.replace(obj1,globalPareto.get(obj1),obj2); //REVISAR
                                 } else {
                                   continue;
                                 }
@@ -261,13 +238,14 @@ public class Main {
                                 Double currentMinorParetoKey = obj1;
                                 for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
                                     Double candidateKey = e.getKey();
-                                    if (candidateKey <= obj1 && candidateKey <= currentMinorParetoKey){
+                                    if (candidateKey.doubleValue() <= obj1.doubleValue() &&
+                                            candidateKey.doubleValue() <= currentMinorParetoKey.doubleValue()){
                                         currentMinorParetoKey = candidateKey;
                                     }
                                 }
-                                if (currentMinorParetoKey < obj1){
+                                if (currentMinorParetoKey.doubleValue() < obj1.doubleValue()){
                                     //Exists a key smaller than obj1
-                                    if(globalPareto.get(currentMinorParetoKey) < obj2){
+                                    if(globalPareto.get(currentMinorParetoKey).doubleValue() < obj2.doubleValue()){
                                         continue;
                                     }else{
                                         globalPareto.put(obj1,obj2);
@@ -276,7 +254,7 @@ public class Main {
                                     for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
                                         Double value = e.getValue();
                                         Double key = e.getKey();
-                                        if (obj2 <= value){
+                                        if (obj2.doubleValue() <= value.doubleValue()){
                                             globalPareto.remove(key);
                                         }
                                     }
@@ -284,12 +262,14 @@ public class Main {
                                 }
                             }
                         }else{
-                            if (obj2 < globalPareto.get(obj1)){
+                            if (obj2.doubleValue() < globalPareto.get(obj1).doubleValue()){
                                 globalPareto.replace(obj1,globalPareto.get(obj1),obj2);
                             } else {
                               continue;
                             }
                         }
+                    } else {
+                        globalPareto.put(obj1,obj2);
                     }
                     line = reader.readLine(); //next line
                 }
