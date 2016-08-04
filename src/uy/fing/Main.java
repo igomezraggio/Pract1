@@ -48,10 +48,7 @@ import weka.core.Instances;
 import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 import java.util.logging.Handler;
 
 import static org.uma.jmetal.runner.AbstractAlgorithmRunner.printFinalSolutionSet;
@@ -86,6 +83,7 @@ public class Main {
 
             BufferedReader reader1 = new BufferedReader(
                     new FileReader(pareto1));
+
 
             String line;
             String token;
@@ -217,6 +215,89 @@ public class Main {
         stringMoea = "VAR"+stringMoea+".tsv";
         return stringMoea;
 
+    }
+
+    public void generateGblFront(ArrayList<String> paretoFronts){
+        BufferedReader reader = null;
+        String line;
+        String token;
+        StringTokenizer tokenizer;
+        Double obj1;
+        Double obj2;
+        HashMap<Double,Double> globalPareto = new HashMap<>();
+
+        try {
+            for (int i = 0; i < paretoFronts.size(); i++) {
+
+                reader = new BufferedReader(new FileReader(paretoFronts.get(i)));
+
+                String s;
+                line = reader.readLine();
+
+                while(line != null){
+
+                    tokenizer = new StringTokenizer(line, " ");
+                    obj1 = Double.valueOf(tokenizer.nextToken());
+                    obj2 = Double.valueOf(tokenizer.nextToken());
+
+                    if (i > 0){
+                        if (!globalPareto.containsKey(obj1)){
+                            if(globalPareto.containsValue(obj2)){
+                                Double glParetoKey = null;
+                                for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
+                                    Double value = e.getValue();
+                                    if (value == obj2){
+                                        glParetoKey = e.getKey();
+                                        break;
+                                    }
+                                }
+                                if(glParetoKey == obj1){
+                                    globalPareto.replace(obj1,globalPareto.get(obj1),obj2);
+                                } else {
+                                  continue;
+                                }
+                            } else {
+                                Double glParetoKey = null;
+                                Double currentMinorParetoKey = obj1;
+                                for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
+                                    Double candidateKey = e.getKey();
+                                    if (candidateKey <= obj1 && candidateKey <= currentMinorParetoKey){
+                                        currentMinorParetoKey = candidateKey;
+                                    }
+                                }
+                                if (currentMinorParetoKey < obj1){
+                                    //Exists a key smaller than obj1
+                                    if(globalPareto.get(currentMinorParetoKey) < obj2){
+                                        continue;
+                                    }else{
+                                        globalPareto.put(obj1,obj2);
+                                    }
+                                } else {
+                                    for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
+                                        Double value = e.getValue();
+                                        Double key = e.getKey();
+                                        if (obj2 <= value){
+                                            globalPareto.remove(key);
+                                        }
+                                    }
+                                    globalPareto.put(obj1,obj2);
+                                }
+                            }
+                        }else{
+                            if (obj2 < globalPareto.get(obj1)){
+                                globalPareto.replace(obj1,globalPareto.get(obj1),obj2);
+                            } else {
+                              continue;
+                            }
+                        }
+                    }
+                    line = reader.readLine(); //next line
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
