@@ -209,9 +209,9 @@ public class Main {
                 reader = new BufferedReader(new FileReader(paretoFronts.get(i)));
 
                 String s;
-                line = reader.readLine();
+                //line = reader.readLine();
 
-                while(line != null){
+                while((line = reader.readLine()) != null){
 
                     tokenizer = new StringTokenizer(line, " ");
                     obj1 = Double.valueOf(tokenizer.nextToken());
@@ -225,25 +225,26 @@ public class Main {
                                     Double value = e.getValue();
                                     if (value.doubleValue() == obj2.doubleValue()){
                                         glParetoKey = e.getKey();
-                                        break;
+                                        continue;
                                     }
                                 }
                                 if(glParetoKey.doubleValue() > obj1.doubleValue()){
-                                    globalPareto.replace(obj1,globalPareto.get(obj1),obj2); //REVISAR
+                                    globalPareto.remove(glParetoKey);
+                                    globalPareto.put(obj1,obj2);
                                 } else {
                                   continue;
                                 }
                             } else {
                                 Double glParetoKey = null;
-                                Double currentMinorParetoKey = obj1;
+                                Double currentMinorParetoKey = -1.0;
                                 for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
                                     Double candidateKey = e.getKey();
                                     if (candidateKey.doubleValue() <= obj1.doubleValue() &&
-                                            candidateKey.doubleValue() <= currentMinorParetoKey.doubleValue()){
+                                            candidateKey.doubleValue() >= currentMinorParetoKey.doubleValue()){
                                         currentMinorParetoKey = candidateKey;
                                     }
                                 }
-                                if (currentMinorParetoKey.doubleValue() < obj1.doubleValue()){
+                                if (currentMinorParetoKey.doubleValue() >= 0.0){
                                     //Exists a key smaller than obj1
                                     if(globalPareto.get(currentMinorParetoKey).doubleValue() < obj2.doubleValue()){
                                         continue;
@@ -271,7 +272,7 @@ public class Main {
                     } else {
                         globalPareto.put(obj1,obj2);
                     }
-                    line = reader.readLine(); //next line
+                    //line = reader.readLine(); //next line
                 }
 
             }
