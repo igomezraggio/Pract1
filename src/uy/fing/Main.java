@@ -2,6 +2,7 @@ package uy.fing;
 
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
+import org.uma.jmetal.algorithm.multiobjective.nsgaiii.NSGAIIIBuilder;
 import org.uma.jmetal.algorithm.multiobjective.paes.PAESBuilder;
 import org.uma.jmetal.algorithm.multiobjective.pesa2.PESA2;
 import org.uma.jmetal.algorithm.multiobjective.pesa2.PESA2Builder;
@@ -78,9 +79,9 @@ public class Main {
 
             AttributesProblem problem = new AttributesProblem(attributeCount, file);
 
-
             String pareto1 = executeMoea(0, attributeCount, threadCount, iterations, pop, problem);
             String pareto2 = executeMoea(1, attributeCount, threadCount, iterations, pop, problem);
+
             */
 
             String pareto1 = "FUN.tsv";
@@ -90,7 +91,62 @@ public class Main {
             fronts.add(pareto1);
             fronts.add(pareto2);
 
-            generateGblFront(fronts);
+            ArrayList<Item> globalPareto = new ArrayList<>();
+            for (int i = 0; i < fronts.size(); i++) {
+                BufferedReader reader1 = new BufferedReader(
+                        new FileReader(fronts.get(i)));
+
+
+                String line;
+                StringTokenizer tokenizer;
+                Double obj1;
+                Double obj2;
+
+
+                while((line = reader1.readLine()) != null){
+                    tokenizer = new StringTokenizer(line, " ");
+
+                    obj1 = Double.valueOf(tokenizer.nextToken());
+                    obj2 = Double.valueOf(tokenizer.nextToken());
+
+                    Item item = new Item(obj1,obj2);
+                    globalPareto.add(item);
+                }
+            }
+
+
+            System.out.println("ParetoEntero");
+            for (int i = 0; i < globalPareto.size(); i++) {
+                System.out.print("("+globalPareto.get(i).getObj1() +";"+globalPareto.get(i).getObj2()+"),");
+            }
+
+            ArrayList<Item> dominatedList = new ArrayList<>();
+
+            for (int i = 0; i < globalPareto.size(); i++) {
+                for (int j = 0; j < globalPareto.size(); j++) {
+                    if (globalPareto.get(i).getObj1().doubleValue() > globalPareto.get(j).getObj1().doubleValue() &&
+                            globalPareto.get(i).getObj2().doubleValue() >= globalPareto.get(j).getObj2().doubleValue()){
+                        dominatedList.add(globalPareto.get(i));
+                        break;
+                    }
+                    if (globalPareto.get(i).getObj1().doubleValue() == globalPareto.get(j).getObj1().doubleValue() &&
+                            globalPareto.get(i).getObj2().doubleValue() > globalPareto.get(j).getObj2().doubleValue()){
+                        dominatedList.add(globalPareto.get(i));
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < dominatedList.size(); i++) {
+                globalPareto.remove(dominatedList.get(i));
+            }
+
+            System.out.println("\nParetoFiltrado");
+            for (int i = 0; i < globalPareto.size(); i++) {
+                System.out.print("("+globalPareto.get(i).getObj1() +";"+globalPareto.get(i).getObj2()+"),");
+            }
+
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -138,12 +194,15 @@ public class Main {
                 stringMoea = "SPEA2";
                 break;
             case 2:
-                algorithm = new PAESBuilder<IntegerSolution>(problem)
-                        .setArchiveSize(pop)
-                        .setMaxEvaluations(iterations)
+                algorithm = new NSGAIIIBuilder<IntegerSolution>(problem)
+                        .setSelectionOperator(selection)
+                        .setMaxIterations(iterations)
+                        .setPopulationSize(pop)
+                        .setCrossoverOperator(crossover)
                         .setMutationOperator(mutation)
+                        .setSolutionListEvaluator(evaluator)
                         .build() ;
-                stringMoea = "PAES";
+                stringMoea = "NSGAIII";
                 break;
         }
 
@@ -194,91 +253,6 @@ public class Main {
 
     }
 
-    public static void generateGblFront(ArrayList<String> paretoFronts){
-        BufferedReader reader = null;
-        String line;
-        String token;
-        StringTokenizer tokenizer;
-        Double obj1;
-        Double obj2;
-        HashMap<Double,Double> globalPareto = new HashMap<>();
-
-        try {
-            for (int i = 0; i < paretoFronts.size(); i++) {
-
-                reader = new BufferedReader(new FileReader(paretoFronts.get(i)));
-
-                String s;
-                line = reader.readLine();
-
-                while(line != null){
-
-                    tokenizer = new StringTokenizer(line, " ");
-                    obj1 = Double.valueOf(tokenizer.nextToken());
-                    obj2 = Double.valueOf(tokenizer.nextToken());
-
-                    if (i > 0){
-                        if (!globalPareto.containsKey(obj1)){
-                            if(globalPareto.containsValue(obj2)){
-                                Double glParetoKey = null;
-                                for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
-                                    Double value = e.getValue();
-                                    if (value.doubleValue() == obj2.doubleValue()){
-                                        glParetoKey = e.getKey();
-                                        break;
-                                    }
-                                }
-                                if(glParetoKey.doubleValue() > obj1.doubleValue()){
-                                    globalPareto.replace(obj1,globalPareto.get(obj1),obj2); //REVISAR
-                                } else {
-                                  continue;
-                                }
-                            } else {
-                                Double glParetoKey = null;
-                                Double currentMinorParetoKey = obj1;
-                                for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
-                                    Double candidateKey = e.getKey();
-                                    if (candidateKey.doubleValue() <= obj1.doubleValue() &&
-                                            candidateKey.doubleValue() <= currentMinorParetoKey.doubleValue()){
-                                        currentMinorParetoKey = candidateKey;
-                                    }
-                                }
-                                if (currentMinorParetoKey.doubleValue() < obj1.doubleValue()){
-                                    //Exists a key smaller than obj1
-                                    if(globalPareto.get(currentMinorParetoKey).doubleValue() < obj2.doubleValue()){
-                                        continue;
-                                    }else{
-                                        globalPareto.put(obj1,obj2);
-                                    }
-                                } else {
-                                    for (Map.Entry<Double,Double> e : globalPareto.entrySet()) {
-                                        Double value = e.getValue();
-                                        Double key = e.getKey();
-                                        if (obj2.doubleValue() <= value.doubleValue()){
-                                            globalPareto.remove(key);
-                                        }
-                                    }
-                                    globalPareto.put(obj1,obj2);
-                                }
-                            }
-                        }else{
-                            if (obj2.doubleValue() < globalPareto.get(obj1).doubleValue()){
-                                globalPareto.replace(obj1,globalPareto.get(obj1),obj2);
-                            } else {
-                              continue;
-                            }
-                        }
-                    } else {
-                        globalPareto.put(obj1,obj2);
-                    }
-                    line = reader.readLine(); //next line
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     public void executeProblem2(String[] args){
