@@ -42,6 +42,7 @@ public class NSGAIIExperiment {
         String experimentBaseDirectory = args[0] ;
         Integer attributeCount = Integer.valueOf(args[1]);
         String path = args[2];
+        Integer coreCount = Integer.valueOf(args[3]);
 
         BufferedReader reader = new BufferedReader(new FileReader(path));
 
@@ -52,7 +53,7 @@ public class NSGAIIExperiment {
 
         List<TaggedAlgorithm<List<IntegerSolution>>> algorithmList = null;
 
-        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(6,problemList.get(0));
+        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(coreCount,problemList.get(0));
 
         algorithmList = configureAlgorithmList(problemList, INDEPENDENT_RUNS, evaluator);
 
@@ -66,7 +67,7 @@ public class NSGAIIExperiment {
                         .setOutputParetoFrontFileName("FUN")
                         .setOutputParetoSetFileName("VAR")
                         //C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIExperiment\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
-                        .setReferenceFrontDirectory("C:\\Users\\igomez\\Desktop\\Beca\\AttsProblem\\NSGAIIExperiment\\data\\NSGAIIa\\AttributesProblem\\ParetoFronts")
+                        .setReferenceFrontDirectory("NSGAIIExperiment\\ParetoFronts")
                         .setReferenceFrontFileNames(referenceFrontFileNames)
                         .setIndicatorList(Arrays.asList(
                                 new Epsilon<IntegerSolution>(),
@@ -241,10 +242,10 @@ public class NSGAIIExperiment {
                 algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIcb", problemList.get(i), run));
             }
             */
-            maxEvaluations = 240;
-            populationSize = 8;
+            maxEvaluations = 2700;
+            populationSize = 30;
             crossoverProbability = 1.0 ;
-            mutationProbability = 0.05 ;
+            mutationProbability = 0.02 ;
             crossover = new IntegerSSOCFCrossover(crossoverProbability) ;
             mutation = new IntBinaryFlipMutation(mutationProbability);
             for (int i = 0; i < problemList.size(); i++) {
@@ -253,11 +254,11 @@ public class NSGAIIExperiment {
                         .setMaxEvaluations(maxEvaluations)
                         .setPopulationSize(populationSize)
                         .setSolutionListEvaluator(evaluator)
-                        .setVariant(NSGAIIBuilder.NSGAIIVariant.Measures)
                         .build();
                 algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIcc", problemList.get(i), run));
             }
 
+            /*
             maxEvaluations = 320;
             populationSize = 8;
             for (int i = 0; i < problemList.size(); i++) {
@@ -335,7 +336,7 @@ public class NSGAIIExperiment {
                         .build();
                 algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIdf", problemList.get(i), run));
             }
-
+            */
         }
 
         return algorithms ;
