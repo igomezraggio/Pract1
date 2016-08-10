@@ -61,11 +61,9 @@ public class Main {
 
     public static void main(String[] args){
 
-        Integer attributeCount = Integer.valueOf(args[0]);
-        String path = args[1];
-        Integer threadCount = Integer.valueOf(args[2]);
-        Integer iterations = Integer.valueOf(args[3]);
-        Integer pop = Integer.valueOf(args[4]);
+        Integer expCountNSGAII = Integer.valueOf(args[0]);
+        Integer expCountSPEA2 = Integer.valueOf(args[1]);
+        Integer expCountPESAII = Integer.valueOf(args[2]);
         //Integer moea = Integer.valueOf(args[5]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
 
         try{
@@ -83,12 +81,20 @@ public class Main {
             String pareto2 = executeMoea(1, attributeCount, threadCount, iterations, pop, problem);
             */
 
-            String pareto1 = "FUN.tsv";
-            String pareto2 = "FUN2.tsv";
+            //PODER USAR PARA GENERAR MEJOR PARETO DE TODAS LAS ITERACIONES DE CADA MOEA
+            //LUEGO HACER PARETO GLOBAL
 
             ArrayList<String> fronts = new ArrayList();
-            fronts.add(pareto1);
-            fronts.add(pareto2);
+            for (int i = 0; i < expCountNSGAII; i++) {
+                fronts.add("NSGAIIExperiment\\data\\NSGAII"+i+"\\AttributesProblem\\FUN"+i+".tsv");
+            }
+            for (int i = 0; i < expCountSPEA2; i++) {
+                fronts.add("SPEA2Experiment\\data\\SPEA2"+i+"\\AttributesProblem\\FUN"+i+".tsv");
+            }
+            for (int i = 0; i < expCountPESAII; i++) {
+                fronts.add("PESAIIExperiment\\data\\PESAII"+i+"\\AttributesProblem\\FUN"+i+".tsv");
+            }
+
 
             ArrayList<Item> globalPareto = new ArrayList<>();
             for (int i = 0; i < fronts.size(); i++) {
