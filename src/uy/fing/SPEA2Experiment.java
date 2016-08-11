@@ -1,7 +1,6 @@
 package uy.fing;
 
 import org.uma.jmetal.algorithm.Algorithm;
-import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.algorithm.multiobjective.spea2.SPEA2Builder;
 import org.uma.jmetal.operator.CrossoverOperator;
 import org.uma.jmetal.operator.MutationOperator;
@@ -63,7 +62,7 @@ public class SPEA2Experiment {
                         .setExperimentBaseDirectory(experimentBaseDirectory)
                         .setOutputParetoFrontFileName("FUN")
                         .setOutputParetoSetFileName("VAR")
-                        //C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIExperiment\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
+                        //C:\Users\igomez\Desktop\BECA\AttsProblem\Experiments\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
                         .setReferenceFrontDirectory("SPEA2Experiment\\ParetoFronts")
                         .setReferenceFrontFileNames(referenceFrontFileNames)
                         .setIndicatorList(Arrays.asList(

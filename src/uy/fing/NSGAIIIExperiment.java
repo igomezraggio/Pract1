@@ -61,7 +61,7 @@ public class NSGAIIIExperiment {
                         .setExperimentBaseDirectory(experimentBaseDirectory)
                         .setOutputParetoFrontFileName("FUN")
                         .setOutputParetoSetFileName("VAR")
-                        //C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIExperiment\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
+                        //C:\Users\igomez\Desktop\BECA\AttsProblem\Experiments\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
                         .setReferenceFrontDirectory("C:\\Users\\igomez\\Desktop\\Beca\\AttsProblem\\NSGAIIIExperiment\\data\\NSGAIII\\AttributesProblem\\ParetoFronts")
                         .setReferenceFrontFileNames(referenceFrontFileNames)
                         .setIndicatorList(Arrays.asList(

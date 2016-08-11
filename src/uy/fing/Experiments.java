@@ -3,8 +3,8 @@ package uy.fing;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 
-import org.uma.jmetal.operator.CrossoverOperator;
-import org.uma.jmetal.operator.MutationOperator;
+import org.uma.jmetal.algorithm.multiobjective.pesa2.PESA2Builder;
+import org.uma.jmetal.algorithm.multiobjective.spea2.SPEA2Builder;
 import org.uma.jmetal.operator.SelectionOperator;
 import org.uma.jmetal.operator.impl.selection.BinaryTournamentSelection;
 import org.uma.jmetal.problem.Problem;
@@ -26,17 +26,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by igomez on 31/07/2016.
  */
 
-public class NSGAIIExperiment {
+public class Experiments {
+
+    public static final int INDEPENDENT_RUNS = 1;
 
     public static void main(String[] args) throws IOException {
-        if (args.length < 1) {
-            throw new JMetalException("Missing argument: experiment base directory") ;
+        if (args.length < 10) {
+            throw new JMetalException("Missing arguments") ;
         }
         String experimentBaseDirectory = args[0] ;
         Integer attributeCount = Integer.valueOf(args[1]);
@@ -85,7 +86,7 @@ public class NSGAIIExperiment {
                         .setExperimentBaseDirectory(experimentBaseDirectory)
                         .setOutputParetoFrontFileName("FUN")
                         .setOutputParetoSetFileName("VAR")
-                        .setReferenceFrontDirectory(moeaSelected + "\\ParetoFronts")
+                        .setReferenceFrontDirectory(experimentBaseDirectory)
                         .setReferenceFrontFileNames(referenceFrontFileNames)
                         .setIndicatorList(Arrays.asList(
                                 new Epsilon<IntegerSolution>(),
@@ -119,30 +120,53 @@ public class NSGAIIExperiment {
      */
     static List<TaggedAlgorithm<List<IntegerSolution>>> configureAlgorithmList(
             List<Problem<IntegerSolution>> problemList, int independentRuns,MultithreadedSolutionListEvaluator evaluator,
-            Integer ierations, Integer population, Double crossProb, Double mutProb, Integer moea){
+            Integer iterations, Integer population, Double crossProb, Double mutProb, Integer moea){
         List<TaggedAlgorithm<List<IntegerSolution>>> algorithms = new ArrayList<>() ;
 
         IntegerSSOCFCrossover crossover = new IntegerSSOCFCrossover(crossProb);
         IntBinaryFlipMutation mutation = new IntBinaryFlipMutation(mutProb);
+        SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new BinaryTournamentSelection<IntegerSolution>() ;
+
+        Algorithm<List<IntegerSolution>> algorithm;
 
         for (int run = 0; run < independentRuns; run++) {
 
-            maxEvaluations = 2700;
-            populationSize = 30;
-            crossoverProbability = 1.0 ;
-            mutationProbability = 0.02 ;
+            int maxEvaluations = iterations * population;
 
             for (int i = 0; i < problemList.size(); i++) {
-                Algorithm<List<IntegerSolution>> algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
-                        .setSelectionOperator(selection)
-                        .setMaxEvaluations(maxEvaluations)
-                        .setPopulationSize(populationSize)
-                        .setSolutionListEvaluator(evaluator)
-                        .build();
-                algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAIIcc", problemList.get(i), run));
-            }
 
+                switch (moea){
+                    case 0:
+                        algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                                .setSelectionOperator(selection)
+                                .setMaxEvaluations(maxEvaluations)
+                                .setPopulationSize(population)
+                                .setSolutionListEvaluator(evaluator)
+                                .build();
+                        algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAII_"+run, problemList.get(i), i));
+                        break;
+                    case 1:
+                        algorithm = new SPEA2Builder<>(problemList.get(i), crossover, mutation)
+                                .setSelectionOperator(selection)
+                                .setMaxIterations(maxEvaluations)
+                                .setPopulationSize(population)
+                                .setSolutionListEvaluator(evaluator)
+                                .build();
+                        algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "SPEA2_"+run, problemList.get(i), i));
+                        break;
+                    case 2:
+                        algorithm = new PESA2Builder<IntegerSolution>(problemList.get(i),crossover,mutation)
+                                .setMaxEvaluations(maxEvaluations)
+                                .setPopulationSize(population)
+                                .setSolutionListEvaluator(evaluator)
+                                .build() ;
+                        algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "PESAII_"+run, problemList.get(i), i));
+                        break;
+                }
+            }
         }
+
+
 
         return algorithms ;
     }

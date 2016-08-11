@@ -63,7 +63,7 @@ public class PESAIIExperiment {
                         .setExperimentBaseDirectory(experimentBaseDirectory)
                         .setOutputParetoFrontFileName("FUN")
                         .setOutputParetoSetFileName("VAR")
-                                //C:\Users\igomez\Desktop\BECA\AttsProblem\NSGAIIExperiment\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
+                                //C:\Users\igomez\Desktop\BECA\AttsProblem\Experiments\data\NSGAIIa\AttributesProblem\ParetoFronts --en casa
                         .setReferenceFrontDirectory("PESAIIExperiment\\ParetoFronts")
                         .setReferenceFrontFileNames(referenceFrontFileNames)
                         .setIndicatorList(Arrays.asList(

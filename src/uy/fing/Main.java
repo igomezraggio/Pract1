@@ -86,7 +86,7 @@ public class Main {
 
             ArrayList<String> fronts = new ArrayList();
             for (int i = 0; i < expCountNSGAII; i++) {
-                fronts.add("NSGAIIExperiment\\data\\NSGAII"+i+"\\AttributesProblem\\FUN"+i+".tsv");
+                fronts.add("Experiments\\data\\NSGAII"+i+"\\AttributesProblem\\FUN"+i+".tsv");
             }
             for (int i = 0; i < expCountSPEA2; i++) {
                 fronts.add("SPEA2Experiment\\data\\SPEA2"+i+"\\AttributesProblem\\FUN"+i+".tsv");
