@@ -23,6 +23,7 @@ import weka.core.Instances;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,77 +37,94 @@ public class Experiments {
     public static final int INDEPENDENT_RUNS = 1;
 
     public static void main(String[] args) throws IOException {
-        if (args.length < 10) {
-            throw new JMetalException("Missing arguments") ;
+        if(args[0].equals("help")){
+            System.out.println("Arguments for the Experiments:");
+            System.out.println("\t 1- Experiment base directory");
+            System.out.println("\t 2- Attribute count without class attribute");
+            System.out.println("\t 3- ARFF file");
+            System.out.println("\t 4- Multiobjective Algorithm to use: 0 - NSGAII, 1 - SPEAII, 2 - PESAII");
+            System.out.println("\t 5- Count of cores to use");
+            System.out.println("\t 6- Number of iterations");
+            System.out.println("\t 7- Population size");
+            System.out.println("\t 8- Crossover Probability: examples: 1.0,0.9,...,0.7");
+            System.out.println("\t 9- Mutation Probability: examples: 0.05,0.04,...,0.01");
+            System.out.println("\t 10- Count of independent runs: used for statistical tests. Put 1 for default");
+
+        }else {
+            if (args.length < 10) {
+                throw new JMetalException("Missing arguments") ;
+            }
+            String experimentBaseDirectory = args[0] ;
+            Integer attributeCount = Integer.valueOf(args[1]);
+            String path = args[2];
+            Integer moea = Integer.valueOf(args[3]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PESAII
+            Integer coreCount = Integer.valueOf(args[4]);
+            Integer iterations = Integer.valueOf(args[5]);
+            Integer population = Integer.valueOf(args[6]);
+            Double crossoverProb = Double.valueOf(args[7]);
+            Double mutationProb = Double.valueOf(args[8]);
+            Integer runs = Integer.valueOf(args[9]);
+
+
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
+            Instances file = new Instances(reader);
+            reader.close();
+
+            List<Problem<IntegerSolution>> problemList = Arrays.<Problem<IntegerSolution>>asList(new AttributesProblem(attributeCount, file)) ;
+
+            List<TaggedAlgorithm<List<IntegerSolution>>> algorithmList = null;
+
+            MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(coreCount,problemList.get(0));
+
+            algorithmList = configureAlgorithmList(problemList, runs, evaluator,iterations,population,crossoverProb,mutationProb,moea);
+
+            List<String> referenceFrontFileNames = Arrays.asList("ATPR.pf") ;
+
+            String moeaSelected = "";
+            switch (moea){
+                case 0:
+                    moeaSelected = "NSGAIIExperiment";
+                    break;
+                case 1:
+                    moeaSelected = "SPEA2Experiment";
+                    break;
+                case 2:
+                    moeaSelected = "PESAIIExperiment";
+                    break;
+            }
+
+            Experiment<IntegerSolution, List<IntegerSolution>> experiment =
+                    new ExperimentBuilder<IntegerSolution, List<IntegerSolution>>(moeaSelected)
+                            .setAlgorithmList(algorithmList)
+                            .setProblemList(problemList)
+                            .setExperimentBaseDirectory(experimentBaseDirectory)
+                            .setOutputParetoFrontFileName("FUN")
+                            .setOutputParetoSetFileName("VAR")
+                            .setReferenceFrontDirectory(experimentBaseDirectory)
+                            .setReferenceFrontFileNames(referenceFrontFileNames)
+                            .setIndicatorList(Arrays.asList(
+                                    new Epsilon<IntegerSolution>(),
+                                    new Spread<IntegerSolution>(),
+                                    new GenerationalDistance<IntegerSolution>(),
+                                    new PISAHypervolume<IntegerSolution>(),
+                                    new InvertedGenerationalDistance<IntegerSolution>(),
+                                    new InvertedGenerationalDistancePlus<IntegerSolution>()))
+                            .setIndependentRuns(INDEPENDENT_RUNS)
+                            .setNumberOfCores(1)
+                            .build();
+
+            new ExecuteAlgorithms<>(experiment).run();
+            new ComputeQualityIndicators<>(experiment).run() ;
+            new GenerateLatexTablesWithStatistics(experiment).run() ;
+            new GenerateWilcoxonTestTablesWithR<>(experiment).run() ;
+            new GenerateFriedmanTestTables<>(experiment).run();
+            new GenerateBoxplotsWithR<>(experiment).setRows(3).setColumns(3).run() ;
+
+            evaluator.shutdown();
         }
-        String experimentBaseDirectory = args[0] ;
-        Integer attributeCount = Integer.valueOf(args[1]);
-        String path = args[2];
-        Integer moea = Integer.valueOf(args[3]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PESAII
-        Integer coreCount = Integer.valueOf(args[4]);
-        Integer iterations = Integer.valueOf(args[5]);
-        Integer population = Integer.valueOf(args[6]);
-        Double crossoverProb = Double.valueOf(args[7]);
-        Double mutationProb = Double.valueOf(args[8]);
-        Integer runs = Integer.valueOf(args[9]);
 
 
-        BufferedReader reader = new BufferedReader(new FileReader(path));
-
-        Instances file = new Instances(reader);
-        reader.close();
-
-        List<Problem<IntegerSolution>> problemList = Arrays.<Problem<IntegerSolution>>asList(new AttributesProblem(attributeCount, file)) ;
-
-        List<TaggedAlgorithm<List<IntegerSolution>>> algorithmList = null;
-
-        MultithreadedSolutionListEvaluator evaluator = new MultithreadedSolutionListEvaluator(coreCount,problemList.get(0));
-
-        algorithmList = configureAlgorithmList(problemList, runs, evaluator,iterations,population,crossoverProb,mutationProb,moea);
-
-        List<String> referenceFrontFileNames = Arrays.asList("ATPR.pf") ;
-
-        String moeaSelected = "";
-        switch (moea){
-            case 0:
-                moeaSelected = "NSGAIIExperiment";
-                break;
-            case 1:
-                moeaSelected = "SPEA2Experiment";
-                break;
-            case 2:
-                moeaSelected = "PESAIIExperiment";
-                break;
-        }
-
-        Experiment<IntegerSolution, List<IntegerSolution>> experiment =
-                new ExperimentBuilder<IntegerSolution, List<IntegerSolution>>(moeaSelected)
-                        .setAlgorithmList(algorithmList)
-                        .setProblemList(problemList)
-                        .setExperimentBaseDirectory(experimentBaseDirectory)
-                        .setOutputParetoFrontFileName("FUN")
-                        .setOutputParetoSetFileName("VAR")
-                        .setReferenceFrontDirectory(experimentBaseDirectory)
-                        .setReferenceFrontFileNames(referenceFrontFileNames)
-                        .setIndicatorList(Arrays.asList(
-                                new Epsilon<IntegerSolution>(),
-                                new Spread<IntegerSolution>(),
-                                new GenerationalDistance<IntegerSolution>(),
-                                new PISAHypervolume<IntegerSolution>(),
-                                new InvertedGenerationalDistance<IntegerSolution>(),
-                                new InvertedGenerationalDistancePlus<IntegerSolution>()))
-                        .setIndependentRuns(INDEPENDENT_RUNS)
-                        .setNumberOfCores(1)
-                        .build();
-
-        new ExecuteAlgorithms<>(experiment).run();
-        new ComputeQualityIndicators<>(experiment).run() ;
-        new GenerateLatexTablesWithStatistics(experiment).run() ;
-        new GenerateWilcoxonTestTablesWithR<>(experiment).run() ;
-        new GenerateFriedmanTestTables<>(experiment).run();
-        new GenerateBoxplotsWithR<>(experiment).setRows(3).setColumns(3).run() ;
-
-        evaluator.shutdown();
     }
 
     /**

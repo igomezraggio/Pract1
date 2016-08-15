@@ -64,6 +64,7 @@ public class Main {
         Integer expCountNSGAII = Integer.valueOf(args[0]);
         Integer expCountSPEA2 = Integer.valueOf(args[1]);
         Integer expCountPESAII = Integer.valueOf(args[2]);
+        String experimentsParentFolder = args[3];
         //Integer moea = Integer.valueOf(args[5]); //codiguera para moeas: 0 - NSGAII, 1 - SPEAII, 2 - PAES
 
         try{
@@ -85,14 +86,18 @@ public class Main {
             //LUEGO HACER PARETO GLOBAL
 
             ArrayList<String> fronts = new ArrayList();
+            ArrayList<String> frontsIndividuals = new ArrayList();
             for (int i = 0; i < expCountNSGAII; i++) {
-                fronts.add("Experiments\\data\\NSGAII"+i+"\\AttributesProblem\\FUN"+i+".tsv");
+                fronts.add(experimentsParentFolder + "\\NSGAIIExperiment\\data\\NSGAII_"+i+"\\AttributesProblem\\FUN0.tsv");
+                frontsIndividuals.add(experimentsParentFolder + "\\NSGAIIExperiment\\data\\NSGAII_"+i+"\\AttributesProblem\\VAR0.tsv");
             }
             for (int i = 0; i < expCountSPEA2; i++) {
-                fronts.add("SPEA2Experiment\\data\\SPEA2"+i+"\\AttributesProblem\\FUN"+i+".tsv");
+                fronts.add(experimentsParentFolder + "\\SPEA2Experiment\\data\\SPEA2_"+i+"\\AttributesProblem\\FUN0.tsv");
+                frontsIndividuals.add(experimentsParentFolder + "\\SPEA2Experiment\\data\\SPEA2_"+i+"\\AttributesProblem\\VAR0.tsv");
             }
             for (int i = 0; i < expCountPESAII; i++) {
-                fronts.add("PESAIIExperiment\\data\\PESAII"+i+"\\AttributesProblem\\FUN"+i+".tsv");
+                fronts.add(experimentsParentFolder + "\\PESAIIExperiment\\data\\PESAII_"+i+"\\AttributesProblem\\FUN0.tsv");
+                frontsIndividuals.add(experimentsParentFolder + "\\PESAIIExperiment\\data\\PESAII_"+i+"\\AttributesProblem\\VAR0.tsv");
             }
 
 
@@ -101,11 +106,15 @@ public class Main {
                 BufferedReader reader1 = new BufferedReader(
                         new FileReader(fronts.get(i)));
 
+                BufferedReader reader2 = new BufferedReader(
+                        new FileReader(frontsIndividuals.get(i)));
+
 
                 String line;
                 StringTokenizer tokenizer;
                 Double obj1;
                 Double obj2;
+                String genome;
 
 
                 while((line = reader1.readLine()) != null){
@@ -113,8 +122,9 @@ public class Main {
 
                     obj1 = Double.valueOf(tokenizer.nextToken());
                     obj2 = Double.valueOf(tokenizer.nextToken());
+                    genome = reader2.readLine();
 
-                    Item item = new Item(obj1,obj2);
+                    Item item = new Item(obj1,obj2,genome);
                     globalPareto.add(item);
                 }
             }
@@ -148,7 +158,10 @@ public class Main {
 
             System.out.println("\nParetoFiltrado");
             for (int i = 0; i < globalPareto.size(); i++) {
-                System.out.print("("+globalPareto.get(i).getObj1() +";"+globalPareto.get(i).getObj2()+"),");
+                System.out.println(
+                        "("+globalPareto.get(i).getObj1() +";"+globalPareto.get(i).getObj2()
+                                +";\n\t"+globalPareto.get(i).getAttributes()
+                        +"\n),");
             }
 
 
