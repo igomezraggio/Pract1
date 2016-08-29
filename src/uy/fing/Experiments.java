@@ -93,7 +93,7 @@ public class Experiments {
                     moeaSelected.add("PESAIIExperiment");
                     break;
                 case 3:
-                    moeaSelected.add("NSGAIIExperiment");
+                    moeaSelected.add("AllExperiments");
                     //moeaSelected.add("SPEA2Experiment");
                     //moeaSelected.add("PESAIIExperiment");
                     break;
@@ -179,12 +179,11 @@ public class Experiments {
                         algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "SPEA2_"+run, problemList.get(i), i));
                         break;
                     case 2:
-                        algorithm = new PESA2Builder<IntegerSolution>(problemList.get(i),crossover,mutation)
+                        algorithm = new PESA2BuilderCorrected<IntegerSolution>(problemList.get(i),crossover,mutation)
                                 .setMaxEvaluations(maxEvaluations)
                                 .setPopulationSize(population)
-                                //.setSolutionListEvaluator(evaluator)
+                                .setSolutionListEvaluator(evaluator)
                                 .build() ;
-                        algorithm.run(); //ARREGLAR ESTO
                         algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "PESAII_"+run, problemList.get(i), i));
                         break;
                     case 3:

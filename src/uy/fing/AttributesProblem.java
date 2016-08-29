@@ -89,6 +89,9 @@ public class AttributesProblem extends AbstractIntegerProblem {
         evalAttributeCount(integerSolution);
 
         evalPredictionError(integerSolution);
+
+        ind++;
+        System.out.println("["+Thread.currentThread().getId()+"]:"+" Terminó evaluación, van: " + ind);
     }
 
     public void evalAttributeCount(IntegerSolution integerSolution){
@@ -171,12 +174,8 @@ public class AttributesProblem extends AbstractIntegerProblem {
 
         integerSolution.setObjective(1,objTwoCost);
 
-        ind++;
         System.out.println("["+Thread.currentThread().getId()+"]:"+" Individuo: " + attributes);
         System.out.println("["+Thread.currentThread().getId()+"]:"+" Fitness2 del individuo: " + objTwoCost);
-        System.out.println("["+Thread.currentThread().getId()+"]:"+" Terminó evaluación, van: " + ind);
-
-
     }
 
 }
