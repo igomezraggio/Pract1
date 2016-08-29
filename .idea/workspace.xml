@@ -43,11 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Experiments.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Experiments.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/uy/fing/Experiments.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2397" max-vertical-offset="3298">
-              <caret line="68" column="66" selection-start-line="68" selection-start-column="66" selection-end-line="68" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.73913044" vertical-offset="2737" max-vertical-offset="3400">
+              <caret line="204" column="38" selection-start-line="204" selection-start-column="38" selection-end-line="204" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -113,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PESA2BuilderCorrected.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PESA2BuilderCorrected.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uy/fing/PESA2BuilderCorrected.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2173913" vertical-offset="0" max-vertical-offset="2312">
-              <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1921" max-vertical-offset="2312">
+              <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3158#3159#0" expanded="true" />
@@ -215,9 +215,9 @@
         <option value="$PROJECT_DIR$/src/uy/fing/Item.java" />
         <option value="$PROJECT_DIR$/src/uy/fing/Main.java" />
         <option value="$PROJECT_DIR$/src/uy/fing/PESA2Corrected.java" />
-        <option value="$PROJECT_DIR$/src/uy/fing/Experiments.java" />
         <option value="$PROJECT_DIR$/src/uy/fing/AttributesProblem.java" />
         <option value="$PROJECT_DIR$/src/uy/fing/PESA2BuilderCorrected.java" />
+        <option value="$PROJECT_DIR$/src/uy/fing/Experiments.java" />
       </list>
     </option>
   </component>
@@ -652,7 +652,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="uy.fing.Experiments" />
       <option name="VM_PARAMETERS" value="-Xmx10000m -Xms1024m" />
-      <option name="PROGRAM_PARAMETERS" value="C:\Users\igomez\Desktop\BECA\AttsProblem 48 C:\Users\igomez\Desktop\BECA\AttsProblem\TrainLimpieza2209_2.arff 2 4 10 6 1.0 0.02 1" />
+      <option name="PROGRAM_PARAMETERS" value="C:\Users\igomez\Desktop\BECA\AttsProblem 48 C:\Users\igomez\Desktop\BECA\AttsProblem\TrainLimpieza2209_2.arff 3 4 150 10 1.0 0.01 1" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -724,16 +724,16 @@
       <workItem from="1470663792434" duration="6242000" />
       <workItem from="1470765770518" duration="170000" />
       <workItem from="1470860196332" duration="4356000" />
-      <workItem from="1472481285978" duration="4424000" />
+      <workItem from="1472481285978" duration="9297000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57981000" />
+    <option name="totallyTimeSpent" value="62854000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -746,7 +746,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41643453" sideWeight="0.49784714" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41643453" sideWeight="0.49784714" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2596401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1261,14 +1261,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uy/fing/Experiments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2397" max-vertical-offset="3298">
-          <caret line="68" column="66" selection-start-line="68" selection-start-column="66" selection-end-line="68" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/uy/fing/PESA2Corrected.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="2431">
@@ -1294,8 +1286,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uy/fing/PESA2BuilderCorrected.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2173913" vertical-offset="0" max-vertical-offset="2312">
-          <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1921" max-vertical-offset="2312">
+          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3158#3159#0" expanded="true" />
@@ -1315,6 +1307,14 @@
             <element signature="e#3732#3733#0" expanded="true" />
             <element signature="e#3767#3768#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uy/fing/Experiments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73913044" vertical-offset="2737" max-vertical-offset="3400">
+          <caret line="204" column="38" selection-start-line="204" selection-start-column="38" selection-end-line="204" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>

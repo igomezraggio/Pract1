@@ -201,6 +201,12 @@ public class Experiments {
                                 .setSolutionListEvaluator(evaluator)
                                 .build();
                         algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "SPEA2_"+run, problemList.get(i), i));
+                        algorithm = new PESA2BuilderCorrected<IntegerSolution>(problemList.get(i),crossover,mutation)
+                                .setMaxEvaluations(maxEvaluations)
+                                .setPopulationSize(population)
+                                .setSolutionListEvaluator(evaluator)
+                                .build() ;
+                        algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "PESAII_"+run, problemList.get(i), i));
                         break;
                 }
             }
