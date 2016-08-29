@@ -42,7 +42,7 @@ public class Experiments {
             System.out.println("\t 1- Experiment base directory");
             System.out.println("\t 2- Attribute count without class attribute");
             System.out.println("\t 3- ARFF file");
-            System.out.println("\t 4- Multiobjective Algorithm to use: 0 - NSGAII, 1 - SPEAII, 2 - PESAII");
+            System.out.println("\t 4- Multiobjective Algorithm to use: 0 - NSGAII, 1 - SPEAII, 2 - PESAII, 3 - ALL");
             System.out.println("\t 5- Count of cores to use");
             System.out.println("\t 6- Number of iterations");
             System.out.println("\t 7- Population size");
@@ -81,46 +81,52 @@ public class Experiments {
 
             List<String> referenceFrontFileNames = Arrays.asList("ATPR.pf") ;
 
-            String moeaSelected = "";
+            ArrayList<String> moeaSelected = new ArrayList();
             switch (moea){
                 case 0:
-                    moeaSelected = "NSGAIIExperiment";
+                    moeaSelected.add("NSGAIIExperiment");
                     break;
                 case 1:
-                    moeaSelected = "SPEA2Experiment";
+                    moeaSelected.add("SPEA2Experiment");
                     break;
                 case 2:
-                    moeaSelected = "PESAIIExperiment";
+                    moeaSelected.add("PESAIIExperiment");
+                    break;
+                case 3:
+                    moeaSelected.add("NSGAIIExperiment");
+                    //moeaSelected.add("SPEA2Experiment");
+                    //moeaSelected.add("PESAIIExperiment");
                     break;
             }
 
-            Experiment<IntegerSolution, List<IntegerSolution>> experiment =
-                    new ExperimentBuilder<IntegerSolution, List<IntegerSolution>>(moeaSelected)
-                            .setAlgorithmList(algorithmList)
-                            .setProblemList(problemList)
-                            .setExperimentBaseDirectory(experimentBaseDirectory)
-                            .setOutputParetoFrontFileName("FUN")
-                            .setOutputParetoSetFileName("VAR")
-                            .setReferenceFrontDirectory(experimentBaseDirectory)
-                            .setReferenceFrontFileNames(referenceFrontFileNames)
-                            .setIndicatorList(Arrays.asList(
-                                    new Epsilon<IntegerSolution>(),
-                                    new Spread<IntegerSolution>(),
-                                    new GenerationalDistance<IntegerSolution>(),
-                                    new PISAHypervolume<IntegerSolution>(),
-                                    new InvertedGenerationalDistance<IntegerSolution>(),
-                                    new InvertedGenerationalDistancePlus<IntegerSolution>()))
-                            .setIndependentRuns(INDEPENDENT_RUNS)
-                            .setNumberOfCores(1)
-                            .build();
+            for (int i = 0; i < moeaSelected.size(); i++) {
+                Experiment<IntegerSolution, List<IntegerSolution>> experiment =
+                        new ExperimentBuilder<IntegerSolution, List<IntegerSolution>>(moeaSelected.get(i))
+                                .setAlgorithmList(algorithmList)
+                                .setProblemList(problemList)
+                                .setExperimentBaseDirectory(experimentBaseDirectory)
+                                .setOutputParetoFrontFileName("FUN")
+                                .setOutputParetoSetFileName("VAR")
+                                .setReferenceFrontDirectory(experimentBaseDirectory)
+                                .setReferenceFrontFileNames(referenceFrontFileNames)
+                                .setIndicatorList(Arrays.asList(
+                                        new Epsilon<IntegerSolution>(),
+                                        new Spread<IntegerSolution>(),
+                                        new GenerationalDistance<IntegerSolution>(),
+                                        new PISAHypervolume<IntegerSolution>(),
+                                        new InvertedGenerationalDistance<IntegerSolution>(),
+                                        new InvertedGenerationalDistancePlus<IntegerSolution>()))
+                                .setIndependentRuns(INDEPENDENT_RUNS)
+                                .setNumberOfCores(1)
+                                .build();
 
-            new ExecuteAlgorithms<>(experiment).run();
-            new ComputeQualityIndicators<>(experiment).run() ;
-            new GenerateLatexTablesWithStatistics(experiment).run() ;
-            new GenerateWilcoxonTestTablesWithR<>(experiment).run() ;
-            new GenerateFriedmanTestTables<>(experiment).run();
-            new GenerateBoxplotsWithR<>(experiment).setRows(3).setColumns(3).run() ;
-
+                new ExecuteAlgorithms<>(experiment).run();
+                new ComputeQualityIndicators<>(experiment).run() ;
+                new GenerateLatexTablesWithStatistics(experiment).run() ;
+                new GenerateWilcoxonTestTablesWithR<>(experiment).run() ;
+                new GenerateFriedmanTestTables<>(experiment).run();
+                new GenerateBoxplotsWithR<>(experiment).setRows(3).setColumns(3).run() ;
+            }
             evaluator.shutdown();
         }
 
@@ -176,9 +182,26 @@ public class Experiments {
                         algorithm = new PESA2Builder<IntegerSolution>(problemList.get(i),crossover,mutation)
                                 .setMaxEvaluations(maxEvaluations)
                                 .setPopulationSize(population)
-                                .setSolutionListEvaluator(evaluator)
+                                //.setSolutionListEvaluator(evaluator)
                                 .build() ;
+                        algorithm.run(); //ARREGLAR ESTO
                         algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "PESAII_"+run, problemList.get(i), i));
+                        break;
+                    case 3:
+                        algorithm = new NSGAIIBuilder<>(problemList.get(i), crossover, mutation)
+                                .setSelectionOperator(selection)
+                                .setMaxEvaluations(maxEvaluations)
+                                .setPopulationSize(population)
+                                .setSolutionListEvaluator(evaluator)
+                                .build();
+                        algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "NSGAII_"+run, problemList.get(i), i));
+                        algorithm = new SPEA2Builder<>(problemList.get(i), crossover, mutation)
+                                .setSelectionOperator(selection)
+                                .setMaxIterations(iterations)
+                                .setPopulationSize(population)
+                                .setSolutionListEvaluator(evaluator)
+                                .build();
+                        algorithms.add(new TaggedAlgorithm<List<IntegerSolution>>(algorithm, "SPEA2_"+run, problemList.get(i), i));
                         break;
                 }
             }
